@@ -42,7 +42,7 @@ public class Login extends javax.swing.JFrame {
         lblSenhaLogin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblSenhaLogin.setText("Senha:");
 
-        btLogin.setText("Cadastrar");
+        btLogin.setText("Login");
         btLogin.setActionCommand("Login");
 
         jCadastrar.setText("Cadastrar");

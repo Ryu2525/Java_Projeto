@@ -4,7 +4,7 @@ package controller;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import view.Menu;
-import model.Usuario;
+import model.Pessoa;
 import view.Cadastro;
 import view.Login;
 
@@ -13,33 +13,15 @@ import view.Login;
  * @author Julian Ryu Takeda
  */
 public class Controller {   
-    ArrayList<Usuario> lista = new ArrayList(); //ArrayList é criado aqui
     private Menu menu;
-    private Cadastro cadastro;
     private Login login;
     
     public Controller(Login login){
         
     }
-    
-    public ArrayList<Usuario> getLista() {
-        return lista;
-    }
 
     public Controller(Menu menu) {
         this.menu = menu;
-    }
-    
-    public Controller(Cadastro cadastro){
-        this.cadastro = cadastro;
-    }
-    
-    public void Cadastrar(){
-        String nome = cadastro.getTxtNome().getText();
-        String cpf = cadastro.getTxtCpf().getText();
-        String senha = cadastro.getTxtSenha().getText();
-        lista.add(new Usuario(nome,cpf,senha));
-        System.out.println(lista);
     }
     
     public void login(){

@@ -1,7 +1,7 @@
 
 package view;
 
-import controller.Controller;
+import controller.ControllerCadastro;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -15,17 +15,17 @@ public class Cadastro extends javax.swing.JFrame {
 //Construtor
     public Cadastro() {
         initComponents();
-        control = new Controller(this);
+        control = new ControllerCadastro(this);
     }
 
 //------------------------------------------------------------------------------    
 
 //Get and Set
-    public Controller getControl() {
+    public ControllerCadastro getControl() {
         return control;
     }
 
-    public void setControl(Controller control) {
+    public void setControl(ControllerCadastro control) {
         this.control = control;
     }
 
@@ -206,11 +206,12 @@ public class Cadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-        control.Cadastrar();
+        control.salvarAluno();
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private void irLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irLoginActionPerformed
-        control.login();
+        Login l = new Login();
+        l.setVisible(true);
     }//GEN-LAST:event_irLoginActionPerformed
 
 //    /**
@@ -248,7 +249,7 @@ public class Cadastro extends javax.swing.JFrame {
 //        });
 //    }
 
-    private Controller control;
+    private ControllerCadastro control;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCadastrar;
     private javax.swing.JMenuItem irLogin;
