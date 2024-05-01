@@ -25,7 +25,7 @@ public class ControllerCadastro {
        String cpf = view.getTxtCpf().getText();
        String senha = view.getTxtSenha().getText();
        
-       Pessoa pessoa = new Pessoa(nome, senha, cpf);
+       Pessoa pessoa = new Pessoa(nome, cpf, senha);
        Conexao conexao = new Conexao();
                
        try{

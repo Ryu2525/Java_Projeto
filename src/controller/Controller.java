@@ -1,11 +1,9 @@
 
 package controller;
 
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import view.Menu;
 import model.Pessoa;
-import view.Cadastro;
 import view.Login;
 
 /**
@@ -14,7 +12,6 @@ import view.Login;
  */
 public class Controller {   
     private Menu menu;
-    private Login login;
     
     public Controller(Login login){
         
@@ -23,12 +20,7 @@ public class Controller {
     public Controller(Menu menu) {
         this.menu = menu;
     }
-    
-    public void login(){
-        Login l = new Login();
-        l.setVisible(true);
-    }
-    
+  
     public void verificarEscolha(){
         if(menu.getjSaldo().isSelected()){
             String senha = JOptionPane.showInputDialog("Digite a sua senha: ");

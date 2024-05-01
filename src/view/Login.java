@@ -1,7 +1,13 @@
 
 package view;
 
-import controller.Controller;
+import controller.ControllerLogin;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JTextField;
 
 /**
  *
@@ -11,10 +17,100 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
-        control = new Controller(this);
+        control = new ControllerLogin(this);
     }
 
+    public ControllerLogin getControl() {
+        return control;
+    }
 
+    public void setControl(ControllerLogin control) {
+        this.control = control;
+    }
+
+    public JLabel getUsuarioNaoExiste() {
+        return UsuarioNaoExiste;
+    }
+
+    public void setUsuarioNaoExiste(JLabel UsuarioNaoExiste) {
+        this.UsuarioNaoExiste = UsuarioNaoExiste;
+    }
+
+    public JButton getBtLogin() {
+        return btLogin;
+    }
+
+    public void setBtLogin(JButton btLogin) {
+        this.btLogin = btLogin;
+    }
+
+    public JMenuItem getIrCadastrar() {
+        return irCadastrar;
+    }
+
+    public void setIrCadastrar(JMenuItem irCadastrar) {
+        this.irCadastrar = irCadastrar;
+    }
+
+    public JMenu getjCadastrar() {
+        return jCadastrar;
+    }
+
+    public void setjCadastrar(JMenu jCadastrar) {
+        this.jCadastrar = jCadastrar;
+    }
+
+    public JMenuBar getjMenuBar1() {
+        return jMenuBar1;
+    }
+
+    public void setjMenuBar1(JMenuBar jMenuBar1) {
+        this.jMenuBar1 = jMenuBar1;
+    }
+
+    public JLabel getLblCpf() {
+        return lblCpf;
+    }
+
+    public void setLblCpf(JLabel lblCpf) {
+        this.lblCpf = lblCpf;
+    }
+
+    public JLabel getLblSenhaLogin() {
+        return lblSenhaLogin;
+    }
+
+    public void setLblSenhaLogin(JLabel lblSenhaLogin) {
+        this.lblSenhaLogin = lblSenhaLogin;
+    }
+
+    public JLabel getLblTitulo() {
+        return lblTitulo;
+    }
+
+    public void setLblTitulo(JLabel lblTitulo) {
+        this.lblTitulo = lblTitulo;
+    }
+
+    public JTextField getTxtCpfLogin() {
+        return txtCpfLogin;
+    }
+
+    public void setTxtCpfLogin(JTextField txtCpfLogin) {
+        this.txtCpfLogin = txtCpfLogin;
+    }
+
+    public JTextField getTxtSenha() {
+        return txtSenha;
+    }
+
+    public void setTxtSenha(JTextField txtSenha) {
+        this.txtSenha = txtSenha;
+    }
+
+    
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -43,7 +139,11 @@ public class Login extends javax.swing.JFrame {
         lblSenhaLogin.setText("Senha:");
 
         btLogin.setText("Login");
-        btLogin.setActionCommand("Login");
+        btLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLoginActionPerformed(evt);
+            }
+        });
 
         jCadastrar.setText("Cadastrar");
 
@@ -104,6 +204,10 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
+        control.LoginAluno();
+    }//GEN-LAST:event_btLoginActionPerformed
+
 //    /**
 //     * @param args the command line arguments
 //     */
@@ -139,7 +243,7 @@ public class Login extends javax.swing.JFrame {
 //        });
 //    }
     
-    private Controller control;
+    private ControllerLogin control;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel UsuarioNaoExiste;
     private javax.swing.JButton btLogin;

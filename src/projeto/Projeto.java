@@ -2,7 +2,6 @@
 package projeto;
 
 import view.Cadastro;
-import view.Menu;
 
 /**
  *
