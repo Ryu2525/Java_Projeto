@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import model.Pessoa;
+import view.Cadastro;
 import view.Login;
 import view.Menu;
 
@@ -33,9 +34,9 @@ public class ControllerLogin {
             if(res.next()){
                 JOptionPane.showMessageDialog(view,"Login feito");
                 String nome = res.getString("nome");
-                String usuario = res.getString("cpf");
+                String cpf = res.getString("cpf");
                 String senha = res.getString("senha");
-                Menu viewMenu = new Menu();
+                Menu viewMenu = new Menu(new Pessoa(nome, cpf, senha));
                 viewMenu.setVisible(true);
                 view.setVisible(false);
             }else{

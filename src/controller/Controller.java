@@ -1,6 +1,10 @@
 
 package controller;
 
+import DAO.BancoDAO;
+import DAO.Conexao;
+import java.sql.Connection;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import view.Menu;
 import model.Pessoa;
@@ -12,19 +16,17 @@ import view.Login;
  */
 public class Controller {   
     private Menu menu;
-    
-    public Controller(Login login){
-        
-    }
+    private Pessoa pessoa;
 
-    public Controller(Menu menu) {
+    public Controller(Menu menu, Pessoa pessoa) {
         this.menu = menu;
+        this.pessoa = pessoa;
     }
   
     public void verificarEscolha(){
         if(menu.getjSaldo().isSelected()){
             String senha = JOptionPane.showInputDialog("Digite a sua senha: ");
-            String senha1 = "teste1";
+            String senha1 = pessoa.getSenha();
             int conferir = senha.length();
             System.out.println(conferir);
             if(conferir > 6){
@@ -48,11 +50,36 @@ public class Controller {
             
         }else if(menu.getjAtualizar().isSelected()){
             
+        }else if(menu.getjExcluir().isSelected()){
+            String senha = JOptionPane.showInputDialog("Digite a sua senha: ");
+            String senha1 = pessoa.getSenha();
+            int conferir = senha.length();
+            System.out.println(conferir);
+            if(conferir > 6){
+               menu.getLblNaoEscolhido().setText("A senha tem no maximo 6 caracter"); 
+            }else{
+                if(senha.equals(senha1)){
+                    String cpf = pessoa.getCpf();
+                    int option = JOptionPane.showConfirmDialog(menu, "Deseja realmente excluir " + cpf + "?");
+                    if(option != 1){
+                    Conexao conexao = new Conexao();
+                    try{
+                        Connection conn = conexao.getConnection();
+                        BancoDAO dao = new BancoDAO(conn);
+                        dao.remover(pessoa);
+                        JOptionPane.showMessageDialog(menu,"Excluido com sucesso!");
+                    }catch(SQLException e){
+                        JOptionPane.showMessageDialog(menu,"Falha de conexao!");
+                    }
+                }
+                }else{
+                    menu.getLblNaoEscolhido().setText("senha incorreta");
+                }
+            }
         }else if(menu.getjSair().isSelected()){
       
         }else{
-            String frase = "Escolha uma opcao";
-            menu.getLblNaoEscolhido().setText(frase);
+            JOptionPane.showMessageDialog(menu,"Escolha uma opção");
         }
     }
         

@@ -37,4 +37,11 @@ public class BancoDAO {
         conn.close();
     }
     
+    public void remover(Pessoa pessoa) throws SQLException{
+        String sql = "delete from bancomoedas where cpf = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, pessoa.getCpf());
+        statement.execute();
+        conn.close();
+    }
 }
