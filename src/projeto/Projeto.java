@@ -1,7 +1,7 @@
 
 package projeto;
 
-import view.Cadastro;
+import view.Login;
 
 /**
  *
@@ -10,8 +10,10 @@ import view.Cadastro;
 public class Projeto {
 
     public static void main(String[] args) {
-        Cadastro c = new Cadastro();
-        c.setVisible(true);
+        Login l = new Login();
+        l.setVisible(true);
+        
+
     }
     
 }

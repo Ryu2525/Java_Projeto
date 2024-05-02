@@ -6,9 +6,11 @@ import DAO.Conexao;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import java.sql.ResultSet;
 import view.Menu;
 import model.Pessoa;
 import view.Login;
+import view.SaldoAtual;
 
 /**
  *
@@ -33,7 +35,32 @@ public class Controller {
                menu.getLblNaoEscolhido().setText("A senha tem no maximo 6 caracter"); 
             }else{
                 if(senha.equals(senha1)){
-                    menu.getLblNaoEscolhido().setText("a senha deu certo");
+                    Pessoa pessoa = new Pessoa(null, menu.getLblCpf().getText(), null);
+                    
+                    Conexao conexao = new Conexao();
+                    
+                    try{
+                        Connection conn = conexao.getConnection();
+                        BancoDAO dao = new BancoDAO(conn);
+                        ResultSet res = dao.consultarMoedasPorCPF(pessoa);
+                        if(res.next()){
+                            JOptionPane.showMessageDialog(menu,"Login feito");
+                            String nome = res.getString("nome");
+                            String cpf = res.getString("cpf");
+                            double real = res.getDouble("real");
+                            double bitcoin = res.getDouble("bitcoin");
+                            double ethereum = res.getDouble("ethereum");
+                            double ripple = res.getDouble("ripple");
+                            
+                            SaldoAtual saldo = new SaldoAtual();
+                            saldo.setVisible(true);
+                            
+                        }else{
+                            JOptionPane.showMessageDialog(menu,"Login nao foi feito");
+                        }
+                    }catch(SQLException e){
+                        JOptionPane.showMessageDialog(menu,"Erro de conexao");
+                    }
                 }else{
                     menu.getLblNaoEscolhido().setText("senha incorreta");
                 }
@@ -59,8 +86,8 @@ public class Controller {
                menu.getLblNaoEscolhido().setText("A senha tem no maximo 6 caracter"); 
             }else{
                 if(senha.equals(senha1)){
-                    String cpf = pessoa.getCpf();
-                    int option = JOptionPane.showConfirmDialog(menu, "Deseja realmente excluir " + cpf + "?");
+                    String nome = pessoa.getNome();
+                    int option = JOptionPane.showConfirmDialog(menu, "Deseja realmente excluir " + nome + "?");
                     if(option != 1){
                     Conexao conexao = new Conexao();
                     try{

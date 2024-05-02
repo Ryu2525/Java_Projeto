@@ -8,6 +8,7 @@ import view.Cadastro;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import java.sql.SQLException;
+import view.Login;
 
 /**
  *
@@ -36,5 +37,11 @@ public class ControllerCadastro {
        }catch(SQLException e){
            JOptionPane.showMessageDialog(view, "Usuario nao cadastrado");
        }     
+   }
+   
+   public void abrirLogin(){
+       Login l = new Login();
+       l.setVisible(true);
+       view.setVisible(false);
    }
 }

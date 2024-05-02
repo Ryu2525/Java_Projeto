@@ -46,4 +46,10 @@ public class ControllerLogin {
             JOptionPane.showMessageDialog(view,"Erro de conexao");
         }
     }
+    
+    public void AbrirCadastro(){
+        Cadastro c = new Cadastro();
+        c.setVisible(true);
+        view.setVisible(false);
+    }
 }

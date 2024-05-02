@@ -146,8 +146,18 @@ public class Login extends javax.swing.JFrame {
         });
 
         jCadastrar.setText("Cadastrar");
+        jCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCadastrarActionPerformed(evt);
+            }
+        });
 
         irCadastrar.setText("Cadastro");
+        irCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irCadastrarActionPerformed(evt);
+            }
+        });
         jCadastrar.add(irCadastrar);
 
         jMenuBar1.add(jCadastrar);
@@ -207,6 +217,14 @@ public class Login extends javax.swing.JFrame {
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
         control.LoginAluno();
     }//GEN-LAST:event_btLoginActionPerformed
+
+    private void jCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCadastrarActionPerformed
+        
+    }//GEN-LAST:event_jCadastrarActionPerformed
+
+    private void irCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irCadastrarActionPerformed
+        control.AbrirCadastro();
+    }//GEN-LAST:event_irCadastrarActionPerformed
 
 //    /**
 //     * @param args the command line arguments

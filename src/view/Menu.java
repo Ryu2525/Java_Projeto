@@ -137,6 +137,30 @@ public class Menu extends javax.swing.JFrame {
     public void setjExcluir(JRadioButton jExcluir) {
         this.jExcluir = jExcluir;
     }
+
+    public JLabel getLblCpf() {
+        return lblCpf;
+    }
+
+    public void setLblCpf(JLabel lblCpf) {
+        this.lblCpf = lblCpf;
+    }
+
+    public JLabel getLblNome() {
+        return lblNome;
+    }
+
+    public void setLblNome(JLabel lblNome) {
+        this.lblNome = lblNome;
+    }
+
+    public JLabel getLblSenha() {
+        return lblSenha;
+    }
+
+    public void setLblSenha(JLabel lblSenha) {
+        this.lblSenha = lblSenha;
+    }
     
     
 //------------------------------------------------------------------------------
