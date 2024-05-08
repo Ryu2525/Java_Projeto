@@ -5,7 +5,7 @@ package model;
  * @author Julian Ryu Takeda
  */
 public class Pessoa {
-    String nome, cpf, senha;
+    protected String nome, cpf, senha;
 
     public String getNome() {
         return nome;

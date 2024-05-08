@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
+import model.Carteira;
+import model.Investidor;
 import view.Menu;
 import model.Pessoa;
 import view.Login;
@@ -36,7 +38,6 @@ public class Controller {
             }else{
                 if(senha.equals(senha1)){
                     Pessoa pessoa = new Pessoa(null, menu.getLblCpf().getText(), null);
-                    
                     Conexao conexao = new Conexao();
                     
                     try{
@@ -44,16 +45,15 @@ public class Controller {
                         BancoDAO dao = new BancoDAO(conn);
                         ResultSet res = dao.consultarMoedasPorCPF(pessoa);
                         if(res.next()){
-                            JOptionPane.showMessageDialog(menu,"Login feito");
+                            JOptionPane.showMessageDialog(menu,"Senha correta");
                             String nome = res.getString("nome");
                             String cpf = res.getString("cpf");
                             double real = res.getDouble("real");
                             double bitcoin = res.getDouble("bitcoin");
                             double ethereum = res.getDouble("ethereum");
                             double ripple = res.getDouble("ripple");
-                            
-                            SaldoAtual saldo = new SaldoAtual();
-                            saldo.setVisible(true);
+                            Menu viewMoeda = new SaldoAtual(new Investidor(nome, cpf, real,  bitcoin, ethereum, ripple));
+                            viewMoeda.setVisible(true);
                             
                         }else{
                             JOptionPane.showMessageDialog(menu,"Login nao foi feito");

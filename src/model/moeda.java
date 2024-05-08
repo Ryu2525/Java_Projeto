@@ -3,55 +3,53 @@ package model;
 
 /**
  *
- * @author Julian Ryu Takeda
+ * @author ryuta
  */
-public class moeda {
-    private double real, bitcoin, ripple, ethereum;
+public class Moeda {
+    private double taxacompra, taxavenda, valor;
+    private String nomeDaMoeda;
 
-    public moeda(double real, double bitcoin, double ripple, double ethereum) {
-        this.real = real;
-        this.bitcoin = bitcoin;
-        this.ripple = ripple;
-        this.ethereum = ethereum;
+    public Moeda(double taxacompra, double taxavenda, double valor, String nomeDaMoeda) {
+        this.taxacompra = taxacompra;
+        this.taxavenda = taxavenda;
+        this.valor = valor;
+        this.nomeDaMoeda = nomeDaMoeda;
     }
 
-    public moeda() {
+    public double getTaxacompra() {
+        return taxacompra;
     }
 
-    public double getReal() {
-        return real;
+    public void setTaxacompra(double taxacompra) {
+        this.taxacompra = taxacompra;
     }
 
-    public void setReal(double real) {
-        this.real = real;
+    public double getTaxavenda() {
+        return taxavenda;
     }
 
-    public double getBitcoin() {
-        return bitcoin;
+    public void setTaxavenda(double taxavenda) {
+        this.taxavenda = taxavenda;
     }
 
-    public void setBitcoin(double bitcoin) {
-        this.bitcoin = bitcoin;
+    public double getValor() {
+        return valor;
     }
 
-    public double getRipple() {
-        return ripple;
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 
-    public void setRipple(double ripple) {
-        this.ripple = ripple;
+    public String getNomeDaMoeda() {
+        return nomeDaMoeda;
     }
 
-    public double getEthereum() {
-        return ethereum;
-    }
-
-    public void setEthereum(double ethereum) {
-        this.ethereum = ethereum;
+    public void setNomeDaMoeda(String nomeDaMoeda) {
+        this.nomeDaMoeda = nomeDaMoeda;
     }
 
     @Override
     public String toString() {
-        return "moeda{" + "real=" + real + ", bitcoin=" + bitcoin + ", ripple=" + ripple + ", ethereum=" + ethereum + '}';
+        return "Moeda{" + "taxacompra=" + taxacompra + ", taxavenda=" + taxavenda + ", valor=" + valor + ", nomeDaMoeda=" + nomeDaMoeda + '}';
     }
 }

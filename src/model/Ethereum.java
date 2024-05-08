@@ -1,13 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package model;
 
 /**
  *
  * @author unieerialves
  */
-public class Ethereum {
+public class Ethereum extends Moeda {
+    
+    public Ethereum(double taxacompra, double taxavenda, double valor, String nomeDaMoeda) {
+        super(0.01, 0.02, 0, "Ethereum");
+    }
     
 }

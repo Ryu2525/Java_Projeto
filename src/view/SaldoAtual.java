@@ -1,8 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package view;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import model.Carteira;
 
 /**
  *
@@ -10,13 +11,118 @@ package view;
  */
 public class SaldoAtual extends javax.swing.JFrame {
 
-    /**
-     * Creates new form SaldoAtual
-     */
-    public SaldoAtual() {
+    
+    public SaldoAtual(Carteira carteira) {
         initComponents();
+        
     }
 
+    public JLabel getCpf() {
+        return Cpf;
+    }
+
+    public void setCpf(JLabel Cpf) {
+        this.Cpf = Cpf;
+    }
+
+    public JLabel getNome() {
+        return Nome;
+    }
+
+    public void setNome(JLabel Nome) {
+        this.Nome = Nome;
+    }
+
+    public JLabel getBitcoin() {
+        return bitcoin;
+    }
+
+    public void setBitcoin(JLabel bitcoin) {
+        this.bitcoin = bitcoin;
+    }
+
+    public JLabel getEthereum() {
+        return ethereum;
+    }
+
+    public void setEthereum(JLabel ethereum) {
+        this.ethereum = ethereum;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public JLabel getLblBit() {
+        return lblBit;
+    }
+
+    public void setLblBit(JLabel lblBit) {
+        this.lblBit = lblBit;
+    }
+
+    public JLabel getLblCpf() {
+        return lblCpf;
+    }
+
+    public void setLblCpf(JLabel lblCpf) {
+        this.lblCpf = lblCpf;
+    }
+
+    public JLabel getLblEthereum() {
+        return lblEthereum;
+    }
+
+    public void setLblEthereum(JLabel lblEthereum) {
+        this.lblEthereum = lblEthereum;
+    }
+
+    public JLabel getLblNome() {
+        return lblNome;
+    }
+
+    public void setLblNome(JLabel lblNome) {
+        this.lblNome = lblNome;
+    }
+
+    public JLabel getLblReal() {
+        return lblReal;
+    }
+
+    public void setLblReal(JLabel lblReal) {
+        this.lblReal = lblReal;
+    }
+
+    public JLabel getLblRipple() {
+        return lblRipple;
+    }
+
+    public void setLblRipple(JLabel lblRipple) {
+        this.lblRipple = lblRipple;
+    }
+
+    public JLabel getReal() {
+        return real;
+    }
+
+    public void setReal(JLabel real) {
+        this.real = real;
+    }
+
+    public JLabel getRipple() {
+        return ripple;
+    }
+
+    public void setRipple(JLabel ripple) {
+        this.ripple = ripple;
+    }
+
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -146,41 +252,41 @@ public class SaldoAtual extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SaldoAtual.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SaldoAtual.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SaldoAtual.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SaldoAtual.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SaldoAtual().setVisible(true);
-            }
-        });
-    }
+    
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(SaldoAtual.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(SaldoAtual.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(SaldoAtual.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(SaldoAtual.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new SaldoAtual().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Cpf;
