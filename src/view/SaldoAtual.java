@@ -3,7 +3,7 @@ package view;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import model.Carteira;
+import model.Investidor;
 
 /**
  *
@@ -12,9 +12,11 @@ import model.Carteira;
 public class SaldoAtual extends javax.swing.JFrame {
 
     
-    public SaldoAtual(Carteira carteira) {
+    public SaldoAtual(Investidor investidor) {
         initComponents();
-        
+        lblNome.setText(investidor.getNome());
+        lblCpf.setText(investidor.getCpf());
+        lblReal.setText(investidor.getCarteira().getMoeda().get(0).getNomeMoeda());
     }
 
     public JLabel getCpf() {
@@ -287,7 +289,7 @@ public class SaldoAtual extends javax.swing.JFrame {
 //            }
 //        });
 //    }
-
+    private Investidor investidor;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Cpf;
     private javax.swing.JLabel Nome;

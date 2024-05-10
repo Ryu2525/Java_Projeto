@@ -6,50 +6,35 @@ package model;
  * @author ryuta
  */
 public class Moeda {
-    private double taxacompra, taxavenda, valor;
-    private String nomeDaMoeda;
+    private String nomeMoeda;
+    private Double Valor;
 
-    public Moeda(double taxacompra, double taxavenda, double valor, String nomeDaMoeda) {
-        this.taxacompra = taxacompra;
-        this.taxavenda = taxavenda;
-        this.valor = valor;
-        this.nomeDaMoeda = nomeDaMoeda;
+    public Moeda(String nomeMoeda, Double Valor) {
+        this.nomeMoeda = nomeMoeda;
+        this.Valor = Valor;
     }
 
-    public double getTaxacompra() {
-        return taxacompra;
+    public Moeda() {
     }
 
-    public void setTaxacompra(double taxacompra) {
-        this.taxacompra = taxacompra;
+    public String getNomeMoeda() {
+        return nomeMoeda;
     }
 
-    public double getTaxavenda() {
-        return taxavenda;
+    public void setNomeMoeda(String nomeMoeda) {
+        this.nomeMoeda = nomeMoeda;
     }
 
-    public void setTaxavenda(double taxavenda) {
-        this.taxavenda = taxavenda;
+    public Double getValor() {
+        return Valor;
     }
 
-    public double getValor() {
-        return valor;
-    }
-
-    public void setValor(double valor) {
-        this.valor = valor;
-    }
-
-    public String getNomeDaMoeda() {
-        return nomeDaMoeda;
-    }
-
-    public void setNomeDaMoeda(String nomeDaMoeda) {
-        this.nomeDaMoeda = nomeDaMoeda;
+    public void setValor(Double Valor) {
+        this.Valor = Valor;
     }
 
     @Override
     public String toString() {
-        return "Moeda{" + "taxacompra=" + taxacompra + ", taxavenda=" + taxavenda + ", valor=" + valor + ", nomeDaMoeda=" + nomeDaMoeda + '}';
+        return "Moeda{" + "nomeMoeda=" + nomeMoeda + ", Valor=" + Valor + '}';
     }
 }
