@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import model.Pessoa;
 import java.sql.PreparedStatement;
+import model.Investidor;
 /**
  *
  * @author Julian Ryu Takeda
@@ -49,12 +50,21 @@ public class BancoDAO {
         conn.close();
     }
     
-    public ResultSet consultarMoedasPorCPF(Pessoa pessoa) throws SQLException {
-        String sql = "SELECT nome, real, bitcoin, ethereum, ripple FROM usuario WHERE cpf = ?";
+    public void Deposito(Pessoa pessoa, double valor) throws SQLException{
+        String sql = "update usuario set real = ? where cpf = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, pessoa.getCpf());
+        statement.setDouble(1, valor);
+        statement.setString(2, pessoa.getCpf());
         statement.execute();
-        ResultSet resultado = statement.executeQuery();
-        return resultado;
-    }   
+        conn.close();
+    }
+    
+        public void Saque(Pessoa pessoa, double valor) throws SQLException{
+        String sql = "update usuario set real = ? where cpf = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setDouble(1, valor);
+        statement.setString(2, pessoa.getCpf());
+        statement.execute();
+        conn.close();
+    }
 }

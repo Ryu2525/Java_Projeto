@@ -20,8 +20,6 @@ public class Investidor extends Pessoa{
         super(nome, cpf, senha);
         this.carteira = carteira;
     }
-
-    
     
     public Carteira getCarteira() {
         return carteira;

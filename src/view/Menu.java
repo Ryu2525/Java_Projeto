@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
+import model.Investidor;
 import model.Pessoa;
 
 /**
@@ -344,7 +345,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jExcluirActionPerformed
 
     private void jDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDepositarActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jDepositarActionPerformed
 
     private void jAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAtualizarActionPerformed

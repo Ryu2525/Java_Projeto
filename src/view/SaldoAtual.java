@@ -16,7 +16,14 @@ public class SaldoAtual extends javax.swing.JFrame {
         initComponents();
         lblNome.setText(investidor.getNome());
         lblCpf.setText(investidor.getCpf());
-        lblReal.setText(investidor.getCarteira().getMoeda().get(0).getNomeMoeda());
+        double valor = investidor.getCarteira().getMoeda().get(0).getValor();
+        lblReal.setText(String.valueOf(valor));
+        double valor2 = investidor.getCarteira().getMoeda().get(1).getValor();
+        lblBit.setText(String.valueOf(valor2));
+        double valor3 = investidor.getCarteira().getMoeda().get(2).getValor();
+        lblEthereum.setText(String.valueOf(valor3));
+        double valor4 = investidor.getCarteira().getMoeda().get(3).getValor();
+        lblRipple.setText(String.valueOf(valor4));
     }
 
     public JLabel getCpf() {
@@ -147,8 +154,6 @@ public class SaldoAtual extends javax.swing.JFrame {
         lblBit = new javax.swing.JLabel();
         lblEthereum = new javax.swing.JLabel();
         lblRipple = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Nome.setText("Nome:");
 
