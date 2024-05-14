@@ -67,4 +67,33 @@ public class BancoDAO {
         statement.execute();
         conn.close();
     }
+        public void CompraDeBitcoin(Pessoa pessoa, double valorReal, double valorBitcoin) throws SQLException{
+            String sql = "update usuario set real = ?, bitcoin = ? where cpf = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setDouble(1, valorReal);
+            statement.setDouble(2, valorBitcoin);
+            statement.setString(3, pessoa.getCpf());
+            statement.execute();
+            conn.close();
+        }
+        
+        public void CompraDeEthereum(Pessoa pessoa, double valorReal, double valorEthereum) throws SQLException{
+            String sql = "update usuario set real = ?, ethereum = ? where cpf = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setDouble(1, valorReal);
+            statement.setDouble(2, valorEthereum);
+            statement.setString(3, pessoa.getCpf());
+            statement.execute();
+            conn.close();
+        }
+        
+        public void CompraDeRipple(Pessoa pessoa, double valorReal, double valorRipple) throws SQLException{
+            String sql = "update usuario set real = ?, ripple = ? where cpf = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setDouble(1, valorReal);
+            statement.setDouble(2, valorRipple);
+            statement.setString(3, pessoa.getCpf());
+            statement.execute();
+            conn.close();
+        }
 }

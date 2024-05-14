@@ -6,6 +6,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
+import model.Investidor;
 import model.Pessoa;
 
 /**
@@ -17,11 +18,11 @@ public class ComprarCriptoptomoedas extends javax.swing.JFrame {
     /**
      * Creates new form ComprarCriptoptomoedas
      */
-    public ComprarCriptoptomoedas(Pessoa pessoa) {
+    public ComprarCriptoptomoedas(Investidor investidor, Pessoa pessoa) {
         initComponents();
-        controll = new ControllerCompraDeCriptoMoedas(this); 
-        lblNome.setText(pessoa.getNome());
-        lblCpf.setText(pessoa.getCpf());
+        controll = new ControllerCompraDeCriptoMoedas(this, investidor, pessoa); 
+        lblNome.setText(investidor.getNome());
+        lblCpf.setText(investidor.getCpf());
     }
 
     public JLabel getLblCpf() {
@@ -109,8 +110,6 @@ public class ComprarCriptoptomoedas extends javax.swing.JFrame {
         lblNome = new javax.swing.JLabel();
         lblCpf = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Comprar");
@@ -129,6 +128,11 @@ public class ComprarCriptoptomoedas extends javax.swing.JFrame {
 
         btEscolher.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btEscolher.setText("Escolher");
+        btEscolher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEscolherActionPerformed(evt);
+            }
+        });
 
         lblNome.setText("Nome");
 
@@ -180,6 +184,10 @@ public class ComprarCriptoptomoedas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btEscolherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEscolherActionPerformed
+        controll.verificarEscolha();
+    }//GEN-LAST:event_btEscolherActionPerformed
     
 //    /**
 //     * @param args the command line arguments

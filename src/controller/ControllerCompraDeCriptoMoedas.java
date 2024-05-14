@@ -11,6 +11,8 @@ import model.Investidor;
 import model.Pessoa;
 import view.ComprarCriptoptomoedas;
 import model.Bitcoin;
+import model.Ethereum;
+import model.Ripple;
 
 /**
  *
@@ -21,9 +23,10 @@ public class ControllerCompraDeCriptoMoedas {
     private Pessoa pessoa;
     private Investidor investidor;
 
-    public ControllerCompraDeCriptoMoedas(ComprarCriptoptomoedas comprar, Investidor investidor) {
+    public ControllerCompraDeCriptoMoedas(ComprarCriptoptomoedas comprar, Investidor investidor, Pessoa pessoa) {
         this.comprar = comprar;
         this.investidor = investidor;
+        this.pessoa = pessoa;
     }
     
     public void verificarEscolha(){
@@ -41,6 +44,7 @@ public class ControllerCompraDeCriptoMoedas {
             JOptionPane.showMessageDialog(comprar, "Investidor não encontrado");
             return;
         }
+        
         Conexao conexao = new Conexao();
         try{
             Connection conn = conexao.getConnection();
@@ -48,33 +52,128 @@ public class ControllerCompraDeCriptoMoedas {
             ResultSet res = dao.consultar(pessoa);
             
             if(res.next()){
-                double realBanco = res.getDouble("real");
-                System.out.println(realBanco);
+                double saldoReal = res.getDouble("real");
+                
                 String bitcoin = JOptionPane.showInputDialog("Digite a quantidade de bitcoins que deseja comprar: ");
-                double bitcoinValor = Double.parseDouble(bitcoin);
+                double quantidadeBitcoin = Double.parseDouble(bitcoin);
+                
                 double bitValor = investidor.getCarteira().getMoeda().get(1).getValorDaMoeda();
                 
-                double taxa = taxaDeComprar();
+                Bitcoin bit = new Bitcoin();
                 
-                if(valorAtualizado < 0){
-                   JOptionPane.showMessageDialog(comprar, "Saldo insuficiente para ser sacado"); 
+                double taxa = bit.taxaDeCompra(quantidadeBitcoin);
+                System.out.println(taxa);
+                
+                double valorDaCompra = bitValor * quantidadeBitcoin + taxa;
+                System.out.println(saldoReal);
+                System.out.println(valorDaCompra);
+                
+                double compra = saldoReal - valorDaCompra;
+                
+                if(valorDaCompra > saldoReal){
+                   JOptionPane.showMessageDialog(comprar, "Saldo insuficiente para compra bitcoin"); 
                 }else{
-                   dao.Saque(pessoa, valorAtualizado);
-                   JOptionPane.showMessageDialog(comprar,"Novo saldo: " + valorAtualizado); 
+                   dao.CompraDeBitcoin(pessoa, compra, quantidadeBitcoin);
+                   JOptionPane.showMessageDialog(comprar,"Novo saldo em real: " + compra);
+                   JOptionPane.showMessageDialog(comprar,"Novo saldo em bitcoin: " + quantidadeBitcoin);
                 }
             } else{
                 JOptionPane.showMessageDialog(comprar, "Investidor não encontrado");
             }             
        }catch(SQLException e){
            JOptionPane.showMessageDialog(comprar, "Falha de conexao!");
+           e.printStackTrace();
        } 
     }
     
     private void ComprarEthereum(){
+        if(pessoa == null){
+            JOptionPane.showMessageDialog(comprar, "Investidor não encontrado");
+            return;
+        }
         
+        Conexao conexao = new Conexao();
+        try{
+            Connection conn = conexao.getConnection();
+            BancoDAO dao = new BancoDAO(conn);
+            ResultSet res = dao.consultar(pessoa);
+            
+            if(res.next()){
+                double saldoReal = res.getDouble("real");
+                
+                String ethereum = JOptionPane.showInputDialog("Digite a quantidade de ethereum que deseja comprar: ");
+                double quantidadeEthereum = Double.parseDouble(ethereum);
+                
+                double ethValor = investidor.getCarteira().getMoeda().get(2).getValorDaMoeda();
+                
+                Ethereum eth = new Ethereum();
+                
+                double taxa = eth.taxaDeCompra(quantidadeEthereum);
+                
+                double valorDaCompra = ethValor * quantidadeEthereum + taxa;
+                
+                double compra = saldoReal - valorDaCompra;
+                
+                if(valorDaCompra > saldoReal){
+                   JOptionPane.showMessageDialog(comprar, "Saldo insuficiente para compra ethereum"); 
+                }else{
+                   dao.CompraDeEthereum(pessoa, compra, quantidadeEthereum);
+                   JOptionPane.showMessageDialog(comprar,"Novo saldo em real: " + compra);
+                   JOptionPane.showMessageDialog(comprar,"Novo saldo em ethereum: " + quantidadeEthereum);
+                }
+            } else{
+                JOptionPane.showMessageDialog(comprar, "Investidor não encontrado");
+            }             
+       }catch(SQLException e){
+           JOptionPane.showMessageDialog(comprar, "Falha de conexao!");
+           e.printStackTrace();
+       } 
     }
     
     private void ComprarRipple(){
+        if(pessoa == null){
+            JOptionPane.showMessageDialog(comprar, "Investidor não encontrado");
+            return;
+        }
         
+        Conexao conexao = new Conexao();
+        try{
+            Connection conn = conexao.getConnection();
+            BancoDAO dao = new BancoDAO(conn);
+            ResultSet res = dao.consultar(pessoa);
+            
+            if(res.next()){
+                double saldoReal = res.getDouble("real");
+                
+                String ripple = JOptionPane.showInputDialog("Digite a quantidade de ripple que deseja comprar: ");
+                double quantidadeRipple = Double.parseDouble(ripple);
+                
+                double ripValor = investidor.getCarteira().getMoeda().get(3).getValorDaMoeda();
+                
+                Ripple rip = new Ripple();
+                
+                double taxa = rip.taxaDeCompra(quantidadeRipple);
+                System.out.println(taxa);
+                
+                double valorDaCompra = ripValor * quantidadeRipple + taxa;
+                System.out.println(saldoReal);
+                System.out.println(valorDaCompra);
+                
+                double compra = saldoReal - valorDaCompra;
+                
+                if(valorDaCompra > saldoReal){
+                   JOptionPane.showMessageDialog(comprar, "Saldo insuficiente para compra ripple"); 
+                }else{
+                   dao.CompraDeRipple(pessoa, compra, quantidadeRipple);
+                   JOptionPane.showMessageDialog(comprar,"Novo saldo em real: " + compra);
+                   JOptionPane.showMessageDialog(comprar,"Novo saldo em ripple: " + quantidadeRipple);
+                }
+            } else{
+                JOptionPane.showMessageDialog(comprar, "Investidor não encontrado");
+            }             
+       }catch(SQLException e){
+           JOptionPane.showMessageDialog(comprar, "Falha de conexao!");
+           e.printStackTrace();
+       } 
     }
 }

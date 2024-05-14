@@ -16,15 +16,14 @@ public class Bitcoin extends Moeda implements Tarifa{
     double valorDoBitcoin = 325049.64;
     
     @Override
-    public double taxaDeCompra(){
-        double taxa = valorDoBitcoin * 0.02;
+    public double taxaDeCompra(double quantidade){
+        double taxa = (quantidade * valorDoBitcoin) * 0.02;
         return taxa;
     }
     
     @Override
-    public double taxaDeVenda(){
-        double taxa = valorDoBitcoin * 0.03;
+    public double taxaDeVenda(double quantidade){
+        double taxa = (quantidade * valorDoBitcoin) * 0.03;
         return taxa;
     }
-    
 }

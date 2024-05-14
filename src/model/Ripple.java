@@ -17,14 +17,14 @@ public class Ripple extends Moeda implements Tarifa{
     double valorDoBitcoin = 2.62;
     
     @Override
-    public double taxaDeCompra(){
-        double taxa = valorDoBitcoin * 0.01;
+    public double taxaDeCompra(double quantidade){
+        double taxa = (quantidade * valorDoBitcoin) * 0;
         return taxa;
     }
     
     @Override
-    public double taxaDeVenda(){
-        double taxa = valorDoBitcoin * 0.01;
+    public double taxaDeVenda(double quantidade){
+        double taxa = (quantidade * valorDoBitcoin) * 0;
         return taxa;
     }
 }
