@@ -53,6 +53,7 @@ public class ControllerCompraDeCriptoMoedas {
             
             if(res.next()){
                 double saldoReal = res.getDouble("real");
+                double saldoBitcoin = res.getDouble("bitcoin");
                 
                 String bitcoin = JOptionPane.showInputDialog("Digite a quantidade de bitcoins que deseja comprar: ");
                 double quantidadeBitcoin = Double.parseDouble(bitcoin);
@@ -69,13 +70,14 @@ public class ControllerCompraDeCriptoMoedas {
                 System.out.println(valorDaCompra);
                 
                 double compra = saldoReal - valorDaCompra;
+                double somaBitcoin = saldoBitcoin + quantidadeBitcoin;
                 
                 if(valorDaCompra > saldoReal){
                    JOptionPane.showMessageDialog(comprar, "Saldo insuficiente para compra bitcoin"); 
                 }else{
-                   dao.CompraDeBitcoin(pessoa, compra, quantidadeBitcoin);
+                   dao.CompraDeBitcoin(pessoa, compra, somaBitcoin);
                    JOptionPane.showMessageDialog(comprar,"Novo saldo em real: " + compra);
-                   JOptionPane.showMessageDialog(comprar,"Novo saldo em bitcoin: " + quantidadeBitcoin);
+                   JOptionPane.showMessageDialog(comprar,"Novo saldo em bitcoin: " + somaBitcoin);
                 }
             } else{
                 JOptionPane.showMessageDialog(comprar, "Investidor não encontrado");
@@ -100,6 +102,7 @@ public class ControllerCompraDeCriptoMoedas {
             
             if(res.next()){
                 double saldoReal = res.getDouble("real");
+                double saldoEthereum = res.getDouble("ethereum");
                 
                 String ethereum = JOptionPane.showInputDialog("Digite a quantidade de ethereum que deseja comprar: ");
                 double quantidadeEthereum = Double.parseDouble(ethereum);
@@ -113,13 +116,14 @@ public class ControllerCompraDeCriptoMoedas {
                 double valorDaCompra = ethValor * quantidadeEthereum + taxa;
                 
                 double compra = saldoReal - valorDaCompra;
+                double somaEthereum = saldoEthereum + quantidadeEthereum;
                 
                 if(valorDaCompra > saldoReal){
                    JOptionPane.showMessageDialog(comprar, "Saldo insuficiente para compra ethereum"); 
                 }else{
-                   dao.CompraDeEthereum(pessoa, compra, quantidadeEthereum);
+                   dao.CompraDeEthereum(pessoa, compra, somaEthereum);
                    JOptionPane.showMessageDialog(comprar,"Novo saldo em real: " + compra);
-                   JOptionPane.showMessageDialog(comprar,"Novo saldo em ethereum: " + quantidadeEthereum);
+                   JOptionPane.showMessageDialog(comprar,"Novo saldo em ethereum: " + somaEthereum);
                 }
             } else{
                 JOptionPane.showMessageDialog(comprar, "Investidor não encontrado");
@@ -144,6 +148,7 @@ public class ControllerCompraDeCriptoMoedas {
             
             if(res.next()){
                 double saldoReal = res.getDouble("real");
+                double saldoRipple = res.getDouble("ripple");
                 
                 String ripple = JOptionPane.showInputDialog("Digite a quantidade de ripple que deseja comprar: ");
                 double quantidadeRipple = Double.parseDouble(ripple);
@@ -160,13 +165,14 @@ public class ControllerCompraDeCriptoMoedas {
                 System.out.println(valorDaCompra);
                 
                 double compra = saldoReal - valorDaCompra;
+                double somaRipple = saldoRipple + quantidadeRipple;
                 
                 if(valorDaCompra > saldoReal){
                    JOptionPane.showMessageDialog(comprar, "Saldo insuficiente para compra ripple"); 
                 }else{
-                   dao.CompraDeRipple(pessoa, compra, quantidadeRipple);
+                   dao.CompraDeRipple(pessoa, compra, somaRipple);
                    JOptionPane.showMessageDialog(comprar,"Novo saldo em real: " + compra);
-                   JOptionPane.showMessageDialog(comprar,"Novo saldo em ripple: " + quantidadeRipple);
+                   JOptionPane.showMessageDialog(comprar,"Novo saldo em ripple: " + somaRipple);
                 }
             } else{
                 JOptionPane.showMessageDialog(comprar, "Investidor não encontrado");

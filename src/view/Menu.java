@@ -21,7 +21,6 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         lblNome.setText(pessoa.getNome());
         lblCpf.setText(pessoa.getCpf());
-        lblSenha.setText(pessoa.getSenha());
         control = new Controller(this, pessoa);
     }
 // -----------------------------------------------------------------------------
@@ -154,14 +153,6 @@ public class Menu extends javax.swing.JFrame {
     public void setLblNome(JLabel lblNome) {
         this.lblNome = lblNome;
     }
-
-    public JLabel getLblSenha() {
-        return lblSenha;
-    }
-
-    public void setLblSenha(JLabel lblSenha) {
-        this.lblSenha = lblSenha;
-    }
     
     
 //------------------------------------------------------------------------------
@@ -185,7 +176,6 @@ public class Menu extends javax.swing.JFrame {
         lblNaoEscolhido = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
         lblCpf = new javax.swing.JLabel();
-        lblSenha = new javax.swing.JLabel();
         jExcluir = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -248,8 +238,6 @@ public class Menu extends javax.swing.JFrame {
 
         lblCpf.setText("CPF");
 
-        lblSenha.setText("Senha");
-
         btMenu.add(jExcluir);
         jExcluir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jExcluir.setText("Excluir conta");
@@ -286,8 +274,7 @@ public class Menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblCpf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblNome, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                    .addComponent(lblSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblNome, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(186, 186, 186)
@@ -303,8 +290,6 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(lblNome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -403,7 +388,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblNaoEscolhido;
     private javax.swing.JLabel lblNome;
-    private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }

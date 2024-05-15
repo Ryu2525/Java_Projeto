@@ -20,6 +20,7 @@ import model.Ripple;
 import view.Login;
 import view.SaldoAtual;
 import view.ComprarCriptoptomoedas;
+import view.VenderCriptoMoeda;
 
 /**
  *
@@ -208,7 +209,44 @@ public class Controller {
     }
 
     private void realizarVenda() {
-        // Lógica para realizar venda
+        String cpf = JOptionPane.showInputDialog("Digite o CPF: ");
+        String senha = JOptionPane.showInputDialog("Digite a sua senha: ");
+
+        Pessoa pessoa = new Pessoa(null, cpf, senha);
+        Conexao conexao = new Conexao();
+        
+        try{
+            Connection conn = conexao.getConnection();
+            BancoDAO dao = new BancoDAO(conn);
+            ResultSet res = dao.consultar(pessoa);
+            
+            if(res.next()){
+            JOptionPane.showMessageDialog(menu,"Acesso liberado");
+            String nome = res.getString("nome");
+            double real = res.getDouble("real");
+            double bitcoin = res.getDouble("bitcoin");
+            double ethereum = res.getDouble("ethereum");
+            double ripple = res.getDouble("ripple");
+            
+            Real real1 = new Real(null, real, null);
+            Bitcoin bitcoin1 = new Bitcoin(null, bitcoin, null);
+            Ethereum ethereum1 = new Ethereum(null, ethereum, null);
+            Ripple ripple1 = new Ripple(null, ripple, null);
+            ArrayList<Moeda> moedasCarteira = new ArrayList<Moeda>();
+            moedasCarteira.add(real1);
+            moedasCarteira.add(bitcoin1);
+            moedasCarteira.add(ethereum1);
+            moedasCarteira.add(ripple1);
+
+            Carteira carteira = new Carteira(moedasCarteira);
+            VenderCriptoMoeda vender = new VenderCriptoMoeda(new Investidor(carteira, nome, cpf, senha), new Pessoa(nome, cpf, senha));
+            vender.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(menu,"Acesso negado");
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(menu,"Erro de conexao");
+        }
     }
 
     private void atualizarDados() {
