@@ -7,7 +7,7 @@ package model;
  */
 public class Bitcoin extends Moeda implements Tarifa{
     public Bitcoin(String nomeMoeda, Double Valor, Double ValorDaMoeda) {
-        super("Bitcoin", Valor, 325049.64);
+        super("Bitcoin", Valor, ValorDaMoeda);
     }
 
     public Bitcoin() {

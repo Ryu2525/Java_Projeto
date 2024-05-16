@@ -8,7 +8,7 @@ package model;
 public class Ethereum extends Moeda implements Tarifa{
 
     public Ethereum(String nomeMoeda, Double Valor, Double ValorDaMoeda) {
-        super("Ethereum", Valor, 15242.44);
+        super("Ethereum", Valor, ValorDaMoeda);
     }
 
     public Ethereum() {

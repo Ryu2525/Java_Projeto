@@ -96,4 +96,21 @@ public class BancoDAO {
             statement.execute();
             conn.close();
         }
+        
+    public ResultSet consultarMoeda(String moeda) throws SQLException{
+        String sql = "select * from tabelamoedas where moeda = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, moeda);
+        statement.execute();
+        ResultSet resultado = statement.getResultSet();
+        return resultado;
+    }
+    
+    public void CotacaoAtualizar(String moeda, double valor) throws SQLException{
+        String sql = "update tabelamoedas set valor = ? where moeda = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setDouble(1, valor);
+        statement.setString(2, moeda);
+        statement.executeUpdate();
+    }
 }

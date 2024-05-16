@@ -20,6 +20,7 @@ import model.Ripple;
 import view.Login;
 import view.SaldoAtual;
 import view.ComprarCriptoptomoedas;
+import view.Cotacao;
 import view.VenderCriptoMoeda;
 
 /**
@@ -59,9 +60,9 @@ public class Controller {
             JOptionPane.showMessageDialog(menu, "Escolha uma opção");
         }
     }
-
+    
     private void exibirSaldo() {
-        String cpf = JOptionPane.showInputDialog("Digite o CPF: ");
+        String cpf = pessoa.getCpf();
         String senha = JOptionPane.showInputDialog("Digite a sua senha: ");
 
         Pessoa pessoa = new Pessoa(null, cpf, senha);
@@ -168,18 +169,25 @@ public class Controller {
     }
 
     private void realizarCompra() {
-        String cpf = JOptionPane.showInputDialog("Digite o CPF: ");
+        String cpf = pessoa.getCpf();
         String senha = JOptionPane.showInputDialog("Digite a sua senha: ");
 
         Pessoa pessoa = new Pessoa(null, cpf, senha);
         Conexao conexao = new Conexao();
+
         
         try{
             Connection conn = conexao.getConnection();
             BancoDAO dao = new BancoDAO(conn);
             ResultSet res = dao.consultar(pessoa);
+            String bit = "Bitcoin";
+            String eth = "Ethereum";
+            String rip = "Ripple";
+            ResultSet res1 = dao.consultarMoeda(bit);
+            ResultSet res2 = dao.consultarMoeda(eth);
+            ResultSet res3 = dao.consultarMoeda(rip);
             
-            if(res.next()){
+            if(res.next() && res1.next() && res2.next() && res3.next()){
             JOptionPane.showMessageDialog(menu,"Acesso liberado");
             String nome = res.getString("nome");
             double real = res.getDouble("real");
@@ -187,10 +195,14 @@ public class Controller {
             double ethereum = res.getDouble("ethereum");
             double ripple = res.getDouble("ripple");
             
+            double bitcoinBanco = res1.getDouble("valor");
+            double ethereumBanco = res2.getDouble("valor");
+            double rippleBanco = res3.getDouble("valor");
+            
             Real real1 = new Real(null, real, null);
-            Bitcoin bitcoin1 = new Bitcoin(null, bitcoin, null);
-            Ethereum ethereum1 = new Ethereum(null, ethereum, null);
-            Ripple ripple1 = new Ripple(null, ripple, null);
+            Bitcoin bitcoin1 = new Bitcoin(null, bitcoin, bitcoinBanco);
+            Ethereum ethereum1 = new Ethereum(null, ethereum, ethereumBanco);
+            Ripple ripple1 = new Ripple(null, ripple, rippleBanco);
             ArrayList<Moeda> moedasCarteira = new ArrayList<Moeda>();
             moedasCarteira.add(real1);
             moedasCarteira.add(bitcoin1);
@@ -209,18 +221,25 @@ public class Controller {
     }
 
     private void realizarVenda() {
-        String cpf = JOptionPane.showInputDialog("Digite o CPF: ");
+        String cpf = pessoa.getCpf();
         String senha = JOptionPane.showInputDialog("Digite a sua senha: ");
 
         Pessoa pessoa = new Pessoa(null, cpf, senha);
         Conexao conexao = new Conexao();
         
+        
         try{
             Connection conn = conexao.getConnection();
             BancoDAO dao = new BancoDAO(conn);
             ResultSet res = dao.consultar(pessoa);
+            String bit = "Bitcoin";
+            String eth = "Ethereum";
+            String rip = "Ripple";
+            ResultSet res1 = dao.consultarMoeda(bit);
+            ResultSet res2 = dao.consultarMoeda(eth);
+            ResultSet res3 = dao.consultarMoeda(rip);
             
-            if(res.next()){
+            if(res.next() && res1.next() && res2.next() && res3.next()){
             JOptionPane.showMessageDialog(menu,"Acesso liberado");
             String nome = res.getString("nome");
             double real = res.getDouble("real");
@@ -228,10 +247,14 @@ public class Controller {
             double ethereum = res.getDouble("ethereum");
             double ripple = res.getDouble("ripple");
             
+            double bitcoinBanco = res1.getDouble("valor");
+            double ethereumBanco = res2.getDouble("valor");
+            double rippleBanco = res3.getDouble("valor");
+            
             Real real1 = new Real(null, real, null);
-            Bitcoin bitcoin1 = new Bitcoin(null, bitcoin, null);
-            Ethereum ethereum1 = new Ethereum(null, ethereum, null);
-            Ripple ripple1 = new Ripple(null, ripple, null);
+            Bitcoin bitcoin1 = new Bitcoin(null, bitcoin, bitcoinBanco);
+            Ethereum ethereum1 = new Ethereum(null, ethereum, ethereumBanco);
+            Ripple ripple1 = new Ripple(null, ripple, rippleBanco);
             ArrayList<Moeda> moedasCarteira = new ArrayList<Moeda>();
             moedasCarteira.add(real1);
             moedasCarteira.add(bitcoin1);
@@ -250,7 +273,50 @@ public class Controller {
     }
 
     private void atualizarDados() {
-        // Lógica para atualizar dados
+        String nome = pessoa.getNome();
+        String cpf = pessoa.getCpf();
+        String senha = pessoa.getSenha();
+
+        Pessoa pessoa = new Pessoa(null, cpf, senha);
+        Conexao conexao = new Conexao();
+        
+        
+        try{
+            Connection conn = conexao.getConnection();
+            BancoDAO dao = new BancoDAO(conn);
+            ResultSet res = dao.consultar(pessoa);
+            String bit = "Bitcoin";
+            String eth = "Ethereum";
+            String rip = "Ripple";
+            ResultSet res1 = dao.consultarMoeda(bit);
+            ResultSet res2 = dao.consultarMoeda(eth);
+            ResultSet res3 = dao.consultarMoeda(rip);
+            
+            if(res.next() && res1.next() && res2.next() && res3.next()){
+            
+            double bitcoinBanco = res1.getDouble("valor");
+            double ethereumBanco = res2.getDouble("valor");
+            double rippleBanco = res3.getDouble("valor");
+            
+            Real real1 = new Real(null, null, null);
+            Bitcoin bitcoin1 = new Bitcoin(null, null, bitcoinBanco);
+            Ethereum ethereum1 = new Ethereum(null, null, ethereumBanco);
+            Ripple ripple1 = new Ripple(null, null, rippleBanco);
+            ArrayList<Moeda> moedasCarteira = new ArrayList<Moeda>();
+            moedasCarteira.add(real1);
+            moedasCarteira.add(bitcoin1);
+            moedasCarteira.add(ethereum1);
+            moedasCarteira.add(ripple1);
+
+            Carteira carteira = new Carteira(moedasCarteira);
+            Cotacao cotacao = new Cotacao(new Investidor(carteira, nome, cpf, senha));
+            cotacao.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(menu,"Acesso negado");
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(menu,"Erro de conexao");
+        }
     }
 
     private void excluirPessoa() {

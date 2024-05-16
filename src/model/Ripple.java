@@ -8,7 +8,7 @@ package model;
 public class Ripple extends Moeda implements Tarifa{
 
     public Ripple(String nomeMoeda, Double Valor, Double ValorDaMoeda) {
-        super("Ripple", Valor, 2.62);
+        super("Ripple", Valor, ValorDaMoeda);
     }
 
     public Ripple() {
