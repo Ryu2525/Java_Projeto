@@ -14,17 +14,15 @@ public class Ethereum extends Moeda implements Tarifa{
     public Ethereum() {
     }
     
-    double valorDoBitcoin = 15242.44;
-    
     @Override
-    public double taxaDeCompra(double quantidade){
-        double taxa = (quantidade * valorDoBitcoin) * 0;
+    public double taxaDeCompra(double quantidade, double ValorDaMoeda){
+        double taxa = (quantidade * ValorDaMoeda) * 0.01;
         return taxa;
     }
     
     @Override
-    public double taxaDeVenda(double quantidade){
-        double taxa = (quantidade * valorDoBitcoin) * 0;
+    public double taxaDeVenda(double quantidade, double ValorDaMoeda){
+        double taxa = (quantidade * ValorDaMoeda) * 0.02;
         return taxa;
     }
     

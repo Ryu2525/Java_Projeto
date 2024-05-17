@@ -56,7 +56,6 @@ public class BancoDAO {
         statement.setDouble(1, valor);
         statement.setString(2, pessoa.getCpf());
         statement.execute();
-        conn.close();
     }
     
         public void Saque(Pessoa pessoa, double valor) throws SQLException{
@@ -112,5 +111,26 @@ public class BancoDAO {
         statement.setDouble(1, valor);
         statement.setString(2, moeda);
         statement.executeUpdate();
+    }
+    
+    
+    
+    public void Extrato(int id_usuario, String operacao, double valorDaAlteracao, String moedaOperacao, 
+            double cotacao, double taxa, double real, double bitcoin, double ethereum, double ripple) throws SQLException{
+        String sql = "INSERT INTO log(id_usuario, operacao, valor_realizado, moeda_realizada, cotacao, taxa, real, bitcoin, ethereum, ripple)"
+                + " values(?,?,?,?,?,?,?,?,?,?)";
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setInt(1, id_usuario);
+            statement.setString(2, operacao);
+            statement.setDouble(3, valorDaAlteracao);
+            statement.setString(4, moedaOperacao);
+            statement.setDouble(5, cotacao);
+            statement.setDouble(6, taxa);
+            statement.setDouble(7, real);
+            statement.setDouble(8, bitcoin);
+            statement.setDouble(9, ethereum);
+            statement.setDouble(10,ripple);
+            statement.execute(); 
+        } 
     }
 }

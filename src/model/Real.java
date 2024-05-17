@@ -14,17 +14,15 @@ public class Real extends Moeda implements Tarifa{
     public Real() {
     }
     
-    double valorDoBitcoin = 0.0;
-    
     @Override
-    public double taxaDeCompra(double quantidade){
-        double taxa = (quantidade * valorDoBitcoin) * 0;
+    public double taxaDeCompra(double quantidade, double valorDaMoeda){
+        double taxa = (quantidade * valorDaMoeda) * 0;
         return taxa;
     }
     
     @Override
-    public double taxaDeVenda(double quantidade){
-        double taxa = (quantidade * valorDoBitcoin) * 0;
+    public double taxaDeVenda(double quantidade, double valorDaMoeda){
+        double taxa = (quantidade * valorDaMoeda) * 0;
         return taxa;
     }
             

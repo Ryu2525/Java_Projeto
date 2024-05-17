@@ -50,10 +50,13 @@ public class ControllerVenderCriptoMoedas {
             Connection conn = conexao.getConnection();
             BancoDAO dao = new BancoDAO(conn);
             ResultSet res = dao.consultar(pessoa);
+            String bit2 = "Bitcoin";
+            ResultSet res1 = dao.consultarMoeda(bit2);
             
-            if(res.next()){
+            if(res.next() && res1.next()){
                 double saldoReal = res.getDouble("real");
                 double saldoBitcoin = res.getDouble("bitcoin");
+                double bitcoinBanco = res1.getDouble("valor");
                 
                 String bitcoin = JOptionPane.showInputDialog("Digite a quantidade de bitcoins que deseja vender: ");
                 double quantidadeBitcoin = Double.parseDouble(bitcoin);
@@ -62,7 +65,7 @@ public class ControllerVenderCriptoMoedas {
                 
                 Bitcoin bit = new Bitcoin();
                 
-                double taxa = bit.taxaDeVenda(quantidadeBitcoin);
+                double taxa = bit.taxaDeVenda(quantidadeBitcoin, bitcoinBanco);
                 System.out.println(taxa);
                 
                 double valorDaCompra = bitValor * quantidadeBitcoin - taxa;
@@ -99,10 +102,13 @@ public class ControllerVenderCriptoMoedas {
             Connection conn = conexao.getConnection();
             BancoDAO dao = new BancoDAO(conn);
             ResultSet res = dao.consultar(pessoa);
+            String eth2 = "Ethereum";
+            ResultSet res1 = dao.consultarMoeda(eth2);
             
-            if(res.next()){
+            if(res.next() && res1.next()){
                 double saldoReal = res.getDouble("real");
                 double saldoEthereum = res.getDouble("ethereum");
+                double bitcoinBanco = res1.getDouble("valor");
                 
                 String ethereum = JOptionPane.showInputDialog("Digite a quantidade de ethereum que deseja vender: ");
                 double quantidadeEthereum = Double.parseDouble(ethereum);
@@ -111,7 +117,7 @@ public class ControllerVenderCriptoMoedas {
                 
                 Ethereum eth = new Ethereum();
                 
-                double taxa = eth.taxaDeVenda(quantidadeEthereum);
+                double taxa = eth.taxaDeVenda(quantidadeEthereum, bitcoinBanco);
                 System.out.println(taxa);
                 
                 double valorDaVenda = ethValor * quantidadeEthereum - taxa;
@@ -149,10 +155,13 @@ public class ControllerVenderCriptoMoedas {
             Connection conn = conexao.getConnection();
             BancoDAO dao = new BancoDAO(conn);
             ResultSet res = dao.consultar(pessoa);
+            String rip2 = "Ripple";
+            ResultSet res1 = dao.consultarMoeda(rip2);
             
-            if(res.next()){
+            if(res.next() && res1.next()){
                 double saldoReal = res.getDouble("real");
                 double saldoRipple = res.getDouble("ripple");
+                double rippleBanco = res1.getDouble("valor");
                 
                 String ripple = JOptionPane.showInputDialog("Digite a quantidade de ripple que deseja vender: ");
                 double quantidadeRipple = Double.parseDouble(ripple);
@@ -161,7 +170,7 @@ public class ControllerVenderCriptoMoedas {
                 
                 Ripple rip = new Ripple();
                 
-                double taxa = rip.taxaDeVenda(quantidadeRipple);
+                double taxa = rip.taxaDeVenda(quantidadeRipple, rippleBanco);
                 System.out.println(taxa);
                 
                 double valorDaVenda = ripValor * quantidadeRipple - taxa;

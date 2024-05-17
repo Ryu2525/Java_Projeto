@@ -86,10 +86,13 @@ public class ControllerCompraDeCriptoMoedas {
             Connection conn = conexao.getConnection();
             BancoDAO dao = new BancoDAO(conn);
             ResultSet res = dao.consultar(pessoa);
+            String bit2 = "Bitcoin";
+            ResultSet res1 = dao.consultarMoeda(bit2);
             
-            if(res.next()){
+            if(res.next() && res1.next()){
                 double saldoReal = res.getDouble("real");
                 double saldoBitcoin = res.getDouble("bitcoin");
+                double bitcoinBanco = res1.getDouble("valor");
                 
                 String bitcoin = JOptionPane.showInputDialog("Digite a quantidade de bitcoins que deseja comprar: ");
                 double quantidadeBitcoin = Double.parseDouble(bitcoin);
@@ -98,12 +101,9 @@ public class ControllerCompraDeCriptoMoedas {
                 
                 Bitcoin bit = new Bitcoin();
                 
-                double taxa = bit.taxaDeCompra(quantidadeBitcoin);
-                System.out.println(taxa);
+                double taxa = bit.taxaDeCompra(quantidadeBitcoin, bitcoinBanco);
                 
                 double valorDaCompra = bitValor * quantidadeBitcoin + taxa;
-                System.out.println(saldoReal);
-                System.out.println(valorDaCompra);
                 
                 double compra = saldoReal - valorDaCompra;
                 double somaBitcoin = saldoBitcoin + quantidadeBitcoin;
@@ -135,10 +135,13 @@ public class ControllerCompraDeCriptoMoedas {
             Connection conn = conexao.getConnection();
             BancoDAO dao = new BancoDAO(conn);
             ResultSet res = dao.consultar(pessoa);
+            String eth2 = "Ethereum";
+            ResultSet res1 = dao.consultarMoeda(eth2);
             
-            if(res.next()){
+            if(res.next() && res1.next()){
                 double saldoReal = res.getDouble("real");
                 double saldoEthereum = res.getDouble("ethereum");
+                double bitcoinBanco = res1.getDouble("valor");
                 
                 String ethereum = JOptionPane.showInputDialog("Digite a quantidade de ethereum que deseja comprar: ");
                 double quantidadeEthereum = Double.parseDouble(ethereum);
@@ -147,7 +150,7 @@ public class ControllerCompraDeCriptoMoedas {
                 
                 Ethereum eth = new Ethereum();
                 
-                double taxa = eth.taxaDeCompra(quantidadeEthereum);
+                double taxa = eth.taxaDeCompra(quantidadeEthereum, bitcoinBanco);
                 
                 double valorDaCompra = ethValor * quantidadeEthereum + taxa;
                 
@@ -181,10 +184,13 @@ public class ControllerCompraDeCriptoMoedas {
             Connection conn = conexao.getConnection();
             BancoDAO dao = new BancoDAO(conn);
             ResultSet res = dao.consultar(pessoa);
+            String rip2 = "Ripple";
+            ResultSet res1 = dao.consultarMoeda(rip2);
             
-            if(res.next()){
+            if(res.next() && res1.next()){
                 double saldoReal = res.getDouble("real");
                 double saldoRipple = res.getDouble("ripple");
+                double rippleBanco = res1.getDouble("valor");
                 
                 String ripple = JOptionPane.showInputDialog("Digite a quantidade de ripple que deseja comprar: ");
                 double quantidadeRipple = Double.parseDouble(ripple);
@@ -193,12 +199,9 @@ public class ControllerCompraDeCriptoMoedas {
                 
                 Ripple rip = new Ripple();
                 
-                double taxa = rip.taxaDeCompra(quantidadeRipple);
-                System.out.println(taxa);
+                double taxa = rip.taxaDeCompra(quantidadeRipple, rippleBanco);
                 
                 double valorDaCompra = ripValor * quantidadeRipple + taxa;
-                System.out.println(saldoReal);
-                System.out.println(valorDaCompra);
                 
                 double compra = saldoReal - valorDaCompra;
                 double somaRipple = saldoRipple + quantidadeRipple;

@@ -104,7 +104,45 @@ public class Controller {
     }
 
     private void exibirExtrato() {
-        // Lógica para exibir extrato
+        String cpf = pessoa.getCpf();
+        String senha = JOptionPane.showInputDialog("Digite a sua senha: ");
+        
+        Pessoa pessoa = new Pessoa(null, cpf, senha);
+        Conexao conexao = new Conexao();
+        
+        try{
+            Connection conn = conexao.getConnection();
+            BancoDAO dao = new BancoDAO(conn);
+            ResultSet res = dao.consultar(pessoa);
+            
+            if(res.next()){
+            JOptionPane.showMessageDialog(menu,"Acesso liberado");
+            String nome = res.getString("nome");
+            double real = res.getDouble("real");
+            double bitcoin = res.getDouble("bitcoin");
+            double ethereum = res.getDouble("ethereum");
+            double ripple = res.getDouble("ripple");
+            
+            Real real1 = new Real(null, real, null);
+            Bitcoin bitcoin1 = new Bitcoin(null, bitcoin, null);
+            Ethereum ethereum1 = new Ethereum(null, ethereum, null);
+            Ripple ripple1 = new Ripple(null, ripple, null);
+            ArrayList<Moeda> moedasCarteira = new ArrayList<Moeda>();
+            moedasCarteira.add(real1);
+            moedasCarteira.add(bitcoin1);
+            moedasCarteira.add(ethereum1);
+            moedasCarteira.add(ripple1);
+
+            Carteira carteira = new Carteira(moedasCarteira);
+
+            SaldoAtual viewMoeda = new SaldoAtual(new Investidor(carteira, nome, cpf, senha));
+            viewMoeda.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(menu,"Acesso negado");
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(menu,"Erro de conexao");
+        }
     }
 
     private void realizarDeposito() {
@@ -117,15 +155,24 @@ public class Controller {
         try{
             Connection conn = conexao.getConnection();
             BancoDAO dao = new BancoDAO(conn);
+            String realCotacao = "Real";
             ResultSet res = dao.consultar(pessoa);
+            ResultSet res1 = dao.consultarMoeda(realCotacao);
             
-            if(res.next()){
+            if(res.next() && res1.next()){
+                double realCot = res1.getDouble("valor");
                 double realBanco = res.getDouble("real");
+                double bitcoinBanco = res.getDouble("bitcoin");
+                double ethereumBanco = res.getDouble("ethereum");
+                double rippleBanco = res.getDouble("ripple");
+                int id = res.getInt("id_usuario");
+                System.out.println(id);
                 System.out.println(realBanco);
                 String real = JOptionPane.showInputDialog("Digite o valor em real a ser depositado: ");
                 double realValor = Double.parseDouble(real);
                 double valorAtualizado = realBanco + realValor;
                 dao.Deposito(pessoa, valorAtualizado);
+                dao.Extrato(id, "+", realValor, "Real", realCot, 0.0, realBanco, bitcoinBanco, ethereumBanco, rippleBanco);
                 
                 JOptionPane.showMessageDialog(menu,"Novo saldo: " + valorAtualizado);
             } else{
@@ -133,6 +180,7 @@ public class Controller {
             }             
        }catch(SQLException e){
            JOptionPane.showMessageDialog(menu, "Falha de conexao!");
+           e.printStackTrace();
        } 
     }
 
@@ -344,6 +392,10 @@ public class Controller {
     }
 
     private void sair() {
-        // Lógica para sair do sistema
+        int option = JOptionPane.showConfirmDialog(menu, "Deseja realmente sair?");
+        if (option == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(menu, "Função executada");
+            System.exit(0);
+        }
     }
 }
