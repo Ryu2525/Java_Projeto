@@ -166,13 +166,12 @@ public class Controller {
                 double ethereumBanco = res.getDouble("ethereum");
                 double rippleBanco = res.getDouble("ripple");
                 int id = res.getInt("id_usuario");
-                System.out.println(id);
-                System.out.println(realBanco);
+                
                 String real = JOptionPane.showInputDialog("Digite o valor em real a ser depositado: ");
                 double realValor = Double.parseDouble(real);
                 double valorAtualizado = realBanco + realValor;
                 dao.Deposito(pessoa, valorAtualizado);
-                dao.Extrato(id, "+", realValor, "Real", realCot, 0.0, realBanco, bitcoinBanco, ethereumBanco, rippleBanco);
+                dao.Extrato(id, "+", realValor, "Real", realCot, 0.0, valorAtualizado, bitcoinBanco, ethereumBanco, rippleBanco);
                 
                 JOptionPane.showMessageDialog(menu,"Novo saldo: " + valorAtualizado);
             } else{
@@ -194,11 +193,18 @@ public class Controller {
         try{
             Connection conn = conexao.getConnection();
             BancoDAO dao = new BancoDAO(conn);
+            String realCotacao = "Real";
             ResultSet res = dao.consultar(pessoa);
+            ResultSet res1 = dao.consultarMoeda(realCotacao);
             
-            if(res.next()){
+            if(res.next() && res1.next()){
+                double realCot = res1.getDouble("valor");
                 double realBanco = res.getDouble("real");
-                System.out.println(realBanco);
+                double bitcoinBanco = res.getDouble("bitcoin");
+                double ethereumBanco = res.getDouble("ethereum");
+                double rippleBanco = res.getDouble("ripple");
+                int id = res.getInt("id_usuario");
+                
                 String real = JOptionPane.showInputDialog("Digite o valor em real a ser sacado: ");
                 double realValor = Double.parseDouble(real);
                 double valorAtualizado = realBanco - realValor;
@@ -206,6 +212,7 @@ public class Controller {
                    JOptionPane.showMessageDialog(menu, "Saldo insuficiente para ser sacado"); 
                 }else{
                    dao.Saque(pessoa, valorAtualizado);
+                   dao.Extrato(id, "-", realValor, "Real", realCot, 0.0, valorAtualizado, bitcoinBanco, ethereumBanco, rippleBanco);
                    JOptionPane.showMessageDialog(menu,"Novo saldo: " + valorAtualizado); 
                 }
             } else{

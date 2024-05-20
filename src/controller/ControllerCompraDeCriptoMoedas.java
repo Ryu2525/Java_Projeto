@@ -93,6 +93,9 @@ public class ControllerCompraDeCriptoMoedas {
                 double saldoReal = res.getDouble("real");
                 double saldoBitcoin = res.getDouble("bitcoin");
                 double bitcoinBanco = res1.getDouble("valor");
+                double ethereumBanco = res.getDouble("ethereum");
+                double rippleBanco = res.getDouble("ripple");
+                int id = res.getInt("id_usuario");
                 
                 String bitcoin = JOptionPane.showInputDialog("Digite a quantidade de bitcoins que deseja comprar: ");
                 double quantidadeBitcoin = Double.parseDouble(bitcoin);
@@ -112,6 +115,7 @@ public class ControllerCompraDeCriptoMoedas {
                    JOptionPane.showMessageDialog(comprar, "Saldo insuficiente para compra bitcoin"); 
                 }else{
                    dao.CompraDeBitcoin(pessoa, compra, somaBitcoin);
+                   dao.Extrato(id, "Compra", quantidadeBitcoin, "Bitcoin", bitcoinBanco, 0.02, compra, somaBitcoin, ethereumBanco, rippleBanco);
                    JOptionPane.showMessageDialog(comprar,"Novo saldo em real: " + compra);
                    JOptionPane.showMessageDialog(comprar,"Novo saldo em bitcoin: " + somaBitcoin);
                 }
@@ -141,7 +145,10 @@ public class ControllerCompraDeCriptoMoedas {
             if(res.next() && res1.next()){
                 double saldoReal = res.getDouble("real");
                 double saldoEthereum = res.getDouble("ethereum");
-                double bitcoinBanco = res1.getDouble("valor");
+                double rippleBanco = res.getDouble("ripple");
+                double ethereumBanco = res1.getDouble("valor");
+                double bitcoinBanco = res.getDouble("bitcoin");
+                int id = res.getInt("id_usuario");
                 
                 String ethereum = JOptionPane.showInputDialog("Digite a quantidade de ethereum que deseja comprar: ");
                 double quantidadeEthereum = Double.parseDouble(ethereum);
@@ -150,7 +157,7 @@ public class ControllerCompraDeCriptoMoedas {
                 
                 Ethereum eth = new Ethereum();
                 
-                double taxa = eth.taxaDeCompra(quantidadeEthereum, bitcoinBanco);
+                double taxa = eth.taxaDeCompra(quantidadeEthereum, ethereumBanco);
                 
                 double valorDaCompra = ethValor * quantidadeEthereum + taxa;
                 
@@ -161,6 +168,7 @@ public class ControllerCompraDeCriptoMoedas {
                    JOptionPane.showMessageDialog(comprar, "Saldo insuficiente para compra ethereum"); 
                 }else{
                    dao.CompraDeEthereum(pessoa, compra, somaEthereum);
+                   dao.Extrato(id, "Compra", quantidadeEthereum, "Ethereum", ethereumBanco, 0.01, compra, bitcoinBanco, somaEthereum, rippleBanco);
                    JOptionPane.showMessageDialog(comprar,"Novo saldo em real: " + compra);
                    JOptionPane.showMessageDialog(comprar,"Novo saldo em ethereum: " + somaEthereum);
                 }
@@ -189,8 +197,11 @@ public class ControllerCompraDeCriptoMoedas {
             
             if(res.next() && res1.next()){
                 double saldoReal = res.getDouble("real");
-                double saldoRipple = res.getDouble("ripple");
                 double rippleBanco = res1.getDouble("valor");
+                double saldoRipple = res.getDouble("ripple");
+                double bitcoinBanco = res.getDouble("bitcoin");
+                double ethereumBanco = res.getDouble("ethereum");
+                int id = res.getInt("id_usuario");
                 
                 String ripple = JOptionPane.showInputDialog("Digite a quantidade de ripple que deseja comprar: ");
                 double quantidadeRipple = Double.parseDouble(ripple);
@@ -210,6 +221,7 @@ public class ControllerCompraDeCriptoMoedas {
                    JOptionPane.showMessageDialog(comprar, "Saldo insuficiente para compra ripple"); 
                 }else{
                    dao.CompraDeRipple(pessoa, compra, somaRipple);
+                   dao.Extrato(id, "Compra", quantidadeRipple, "Ripple", rippleBanco, 0.01, compra, bitcoinBanco, ethereumBanco, somaRipple);
                    JOptionPane.showMessageDialog(comprar,"Novo saldo em real: " + compra);
                    JOptionPane.showMessageDialog(comprar,"Novo saldo em ripple: " + somaRipple);
                 }

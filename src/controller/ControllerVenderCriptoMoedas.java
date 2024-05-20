@@ -57,6 +57,9 @@ public class ControllerVenderCriptoMoedas {
                 double saldoReal = res.getDouble("real");
                 double saldoBitcoin = res.getDouble("bitcoin");
                 double bitcoinBanco = res1.getDouble("valor");
+                double ethereumBanco = res.getDouble("ethereum");
+                double rippleBanco = res.getDouble("ripple");
+                int id = res.getInt("id_usuario");
                 
                 String bitcoin = JOptionPane.showInputDialog("Digite a quantidade de bitcoins que deseja vender: ");
                 double quantidadeBitcoin = Double.parseDouble(bitcoin);
@@ -79,6 +82,7 @@ public class ControllerVenderCriptoMoedas {
                    JOptionPane.showMessageDialog(vender, "Voce nao tem essa quantidade de bitcoins para vender!"); 
                 }else{
                    dao.CompraDeBitcoin(pessoa, venda, subBitcoin);
+                   dao.Extrato(id, "Venda", quantidadeBitcoin, "Bitcoin", bitcoinBanco, 0.03, venda, subBitcoin, ethereumBanco, rippleBanco);
                    JOptionPane.showMessageDialog(vender,"Novo saldo em real: " + venda);
                    JOptionPane.showMessageDialog(vender,"Novo saldo em bitcoin: " + subBitcoin);
                 }
@@ -108,7 +112,10 @@ public class ControllerVenderCriptoMoedas {
             if(res.next() && res1.next()){
                 double saldoReal = res.getDouble("real");
                 double saldoEthereum = res.getDouble("ethereum");
-                double bitcoinBanco = res1.getDouble("valor");
+                double rippleBanco = res.getDouble("ripple");
+                double ethereumBanco = res1.getDouble("valor");
+                double bitcoinBanco = res.getDouble("bitcoin");
+                int id = res.getInt("id_usuario");                
                 
                 String ethereum = JOptionPane.showInputDialog("Digite a quantidade de ethereum que deseja vender: ");
                 double quantidadeEthereum = Double.parseDouble(ethereum);
@@ -118,12 +125,9 @@ public class ControllerVenderCriptoMoedas {
                 Ethereum eth = new Ethereum();
                 
                 double taxa = eth.taxaDeVenda(quantidadeEthereum, bitcoinBanco);
-                System.out.println(taxa);
                 
                 double valorDaVenda = ethValor * quantidadeEthereum - taxa;
-                System.out.println(saldoReal);
-                System.out.println(valorDaVenda);
-                
+  
                 double venda = saldoReal + valorDaVenda;
                 double subEthereum = saldoEthereum - quantidadeEthereum;
                 
@@ -131,6 +135,7 @@ public class ControllerVenderCriptoMoedas {
                    JOptionPane.showMessageDialog(vender, "Voce nao tem essa quantidade de ethereum para vender!"); 
                 }else{
                    dao.CompraDeBitcoin(pessoa, venda, subEthereum);
+                   dao.Extrato(id, "Venda", quantidadeEthereum, "Ethereum", ethereumBanco, 0.02, venda, bitcoinBanco, subEthereum, rippleBanco);
                    JOptionPane.showMessageDialog(vender,"Novo saldo em real: " + venda);
                    JOptionPane.showMessageDialog(vender,"Novo saldo em Ethereum: " + subEthereum);
                 }
@@ -160,8 +165,11 @@ public class ControllerVenderCriptoMoedas {
             
             if(res.next() && res1.next()){
                 double saldoReal = res.getDouble("real");
-                double saldoRipple = res.getDouble("ripple");
                 double rippleBanco = res1.getDouble("valor");
+                double saldoRipple = res.getDouble("ripple");
+                double bitcoinBanco = res.getDouble("bitcoin");
+                double ethereumBanco = res.getDouble("ethereum");
+                int id = res.getInt("id_usuario");
                 
                 String ripple = JOptionPane.showInputDialog("Digite a quantidade de ripple que deseja vender: ");
                 double quantidadeRipple = Double.parseDouble(ripple);
@@ -184,6 +192,7 @@ public class ControllerVenderCriptoMoedas {
                    JOptionPane.showMessageDialog(vender, "Voce nao tem essa quantidade de ripple para vender!"); 
                 }else{
                    dao.CompraDeBitcoin(pessoa, venda, subRipple);
+                   dao.Extrato(id, "Venda", quantidadeRipple, "Ripple", rippleBanco, 0.01, venda, bitcoinBanco, ethereumBanco, subRipple);
                    JOptionPane.showMessageDialog(vender,"Novo saldo em real: " + venda);
                    JOptionPane.showMessageDialog(vender,"Novo saldo em bitcoin: " + subRipple);
                 }

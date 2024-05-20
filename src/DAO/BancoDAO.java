@@ -64,7 +64,6 @@ public class BancoDAO {
         statement.setDouble(1, valor);
         statement.setString(2, pessoa.getCpf());
         statement.execute();
-        conn.close();
     }
         public void CompraDeBitcoin(Pessoa pessoa, double valorReal, double valorBitcoin) throws SQLException{
             String sql = "update usuario set real = ?, bitcoin = ? where cpf = ?";
@@ -73,7 +72,6 @@ public class BancoDAO {
             statement.setDouble(2, valorBitcoin);
             statement.setString(3, pessoa.getCpf());
             statement.execute();
-            conn.close();
         }
         
         public void CompraDeEthereum(Pessoa pessoa, double valorReal, double valorEthereum) throws SQLException{
@@ -83,7 +81,6 @@ public class BancoDAO {
             statement.setDouble(2, valorEthereum);
             statement.setString(3, pessoa.getCpf());
             statement.execute();
-            conn.close();
         }
         
         public void CompraDeRipple(Pessoa pessoa, double valorReal, double valorRipple) throws SQLException{
@@ -93,7 +90,6 @@ public class BancoDAO {
             statement.setDouble(2, valorRipple);
             statement.setString(3, pessoa.getCpf());
             statement.execute();
-            conn.close();
         }
         
     public ResultSet consultarMoeda(String moeda) throws SQLException{
