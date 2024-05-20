@@ -109,8 +109,6 @@ public class BancoDAO {
         statement.executeUpdate();
     }
     
-    
-    
     public void Extrato(int id_usuario, String operacao, double valorDaAlteracao, String moedaOperacao, 
             double cotacao, double taxa, double real, double bitcoin, double ethereum, double ripple) throws SQLException{
         String sql = "INSERT INTO log(id_usuario, operacao, valor_realizado, moeda_realizada, cotacao, taxa, real, bitcoin, ethereum, ripple)"
@@ -128,5 +126,14 @@ public class BancoDAO {
             statement.setDouble(10,ripple);
             statement.execute(); 
         } 
+    }
+    
+    public ResultSet MostrarExtrato(int id_usuario) throws SQLException{
+        String sql = "select * from log where id_usuario = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setDouble(1, id_usuario);
+        statement.execute();
+        ResultSet resultado = statement.getResultSet();
+        return resultado;
     }
 }

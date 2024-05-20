@@ -6,10 +6,7 @@ import DAO.Conexao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import model.Bitcoin;
-import model.Ethereum;
 import model.Investidor;
-import model.Ripple;
 import view.Cotacao;
 
 /**

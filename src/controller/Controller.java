@@ -21,6 +21,7 @@ import view.Login;
 import view.SaldoAtual;
 import view.ComprarCriptoptomoedas;
 import view.Cotacao;
+import view.Extrato;
 import view.VenderCriptoMoeda;
 
 /**
@@ -75,26 +76,10 @@ public class Controller {
             
             if(res.next()){
             JOptionPane.showMessageDialog(menu,"Acesso liberado");
-            String nome = res.getString("nome");
-            double real = res.getDouble("real");
-            double bitcoin = res.getDouble("bitcoin");
-            double ethereum = res.getDouble("ethereum");
-            double ripple = res.getDouble("ripple");
+            int id = res.getInt("id_usuario");
             
-            Real real1 = new Real(null, real, null);
-            Bitcoin bitcoin1 = new Bitcoin(null, bitcoin, null);
-            Ethereum ethereum1 = new Ethereum(null, ethereum, null);
-            Ripple ripple1 = new Ripple(null, ripple, null);
-            ArrayList<Moeda> moedasCarteira = new ArrayList<Moeda>();
-            moedasCarteira.add(real1);
-            moedasCarteira.add(bitcoin1);
-            moedasCarteira.add(ethereum1);
-            moedasCarteira.add(ripple1);
-
-            Carteira carteira = new Carteira(moedasCarteira);
-
-            SaldoAtual viewMoeda = new SaldoAtual(new Investidor(carteira, nome, cpf, senha));
-            viewMoeda.setVisible(true);
+            Extrato viewExtrato = new Extrato(id);
+            viewExtrato.setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(menu,"Acesso negado");
             }
