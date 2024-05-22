@@ -39,42 +39,6 @@ public class ControllerCompraDeCriptoMoedas {
         }
     }
     
-//    private void ValorMoedas(){
-//        Conexao conexao = new Conexao();
-//        
-//        try{
-//            Connection conn = conexao.getConnection();
-//            BancoDAO dao = new BancoDAO(conn);
-//            String bit = "Bitcoin";
-//            String eth = "Ethereum";
-//            String rip = "Ripple";
-//            ResultSet res1 = dao.consultarMoeda(bit);
-//            ResultSet res2 = dao.consultarMoeda(eth);
-//            ResultSet res3 = dao.consultarMoeda(rip);
-//            
-//            if(res1.next() && res2.next() && res3.next()){
-//                double bitcoin = res1.getDouble("valor");
-//                double ethereum = res2.getDouble("valor");
-//                double ripple = res3.getDouble("valor");
-//                
-//                Bitcoin biti = new Bitcoin(null, null, bitcoin);
-//                Ethereum ethe = new Ethereum(null, null, ethereum);
-//                Ripple ripp = new Ripple(null, null, ripple);
-//                
-//                // Verificando se os valores foram atribuídos corretamente
-//                System.out.println("Bitcoin valor: " + biti.getValorDaMoeda());
-//                System.out.println("Ethereum valor: " + ethe.getValorDaMoeda());
-//                System.out.println("Ripple valor: " + ripp.getValorDaMoeda());
-//
-//                System.out.println("Foi pego os valores das moedas");
-//            }else{
-//                System.out.println("As moedas nao foram pegas");
-//            }
-//        }catch(SQLException e){
-//            System.out.println("Erro de conexao");
-//        }
-//    }
-    
     private void ComprarBitcoin(){
         if(pessoa == null){
             JOptionPane.showMessageDialog(comprar, "Investidor não encontrado");

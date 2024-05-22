@@ -34,16 +34,28 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btEthereum" min="-2" pref="98" max="-2" attributes="0"/>
-                          <Component id="btBitcoin" min="-2" pref="98" max="-2" attributes="0"/>
-                          <Component id="btRipple" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="btBitcoin" min="-2" pref="98" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lblBitcoin" min="-2" pref="111" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btRipple" min="-2" pref="98" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lblRipple" max="32767" attributes="0"/>
+                          </Group>
                           <Component id="btEscolher" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btEthereum" min="-2" pref="98" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lblEthereum" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Component id="jLabel1" min="-2" pref="99" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="146" max="32767" attributes="0"/>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -58,7 +70,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btBitcoin" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btBitcoin" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblBitcoin" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
@@ -66,9 +81,15 @@
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btEthereum" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btEthereum" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblEthereum" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btRipple" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btRipple" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblRipple" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btEscolher" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="92" max="32767" attributes="0"/>
@@ -138,6 +159,21 @@
     <Component class="javax.swing.JLabel" name="lblCpf">
       <Properties>
         <Property name="text" type="java.lang.String" value="CPF"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblEthereum">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Valor do ethereum"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblBitcoin">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Valor da bitcoin"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblRipple">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Valor do ripple"/>
       </Properties>
     </Component>
   </SubComponents>

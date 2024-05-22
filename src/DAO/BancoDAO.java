@@ -17,6 +17,15 @@ public class BancoDAO {
         this.conn = conn;
     }
     
+    public ResultSet consultarUsuarioExistente(String cpf) throws SQLException{
+        String sql = "select * from usuario where cpf = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, cpf);
+        statement.execute();
+        ResultSet resultado = statement.getResultSet();
+        return resultado;
+    }
+    
     public ResultSet consultar(Pessoa pessoa) throws SQLException{
         String sql = "select * from usuario where cpf = ? and senha = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -42,12 +51,18 @@ public class BancoDAO {
         conn.close();
     }
     
-    public void remover(Pessoa pessoa) throws SQLException{
+    public void remover(String cpf) throws SQLException{
         String sql = "delete from usuario where cpf = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, pessoa.getCpf());
+        statement.setString(1, cpf);
         statement.execute();
-        conn.close();
+    }
+    
+    public void removerExtrato(int id) throws SQLException{
+        String sql = "delete from log where id_usuario = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setInt(1, id);
+        statement.execute(); 
     }
     
     public void Deposito(Pessoa pessoa, double valor) throws SQLException{

@@ -124,7 +124,7 @@ public class ControllerVenderCriptoMoedas {
                 
                 Ethereum eth = new Ethereum();
                 
-                double taxa = eth.taxaDeVenda(quantidadeEthereum, bitcoinBanco);
+                double taxa = eth.taxaDeVenda(quantidadeEthereum, ethereumBanco);
                 
                 double valorDaVenda = ethValor * quantidadeEthereum - taxa;
   
@@ -134,7 +134,7 @@ public class ControllerVenderCriptoMoedas {
                 if(quantidadeEthereum > saldoEthereum){
                    JOptionPane.showMessageDialog(vender, "Voce nao tem essa quantidade de ethereum para vender!"); 
                 }else{
-                   dao.CompraDeBitcoin(pessoa, venda, subEthereum);
+                   dao.CompraDeEthereum(pessoa, venda, subEthereum);
                    dao.Extrato(id, "Venda", quantidadeEthereum, "Ethereum", ethereumBanco, 0.02, venda, bitcoinBanco, subEthereum, rippleBanco);
                    JOptionPane.showMessageDialog(vender,"Novo saldo em real: " + venda);
                    JOptionPane.showMessageDialog(vender,"Novo saldo em Ethereum: " + subEthereum);
@@ -191,10 +191,10 @@ public class ControllerVenderCriptoMoedas {
                 if(quantidadeRipple > saldoRipple){
                    JOptionPane.showMessageDialog(vender, "Voce nao tem essa quantidade de ripple para vender!"); 
                 }else{
-                   dao.CompraDeBitcoin(pessoa, venda, subRipple);
+                   dao.CompraDeRipple(pessoa, venda, subRipple);
                    dao.Extrato(id, "Venda", quantidadeRipple, "Ripple", rippleBanco, 0.01, venda, bitcoinBanco, ethereumBanco, subRipple);
                    JOptionPane.showMessageDialog(vender,"Novo saldo em real: " + venda);
-                   JOptionPane.showMessageDialog(vender,"Novo saldo em bitcoin: " + subRipple);
+                   JOptionPane.showMessageDialog(vender,"Novo saldo em ripple: " + subRipple);
                 }
             } else{
                 JOptionPane.showMessageDialog(vender, "Investidor não encontrado");

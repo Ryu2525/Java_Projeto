@@ -18,11 +18,14 @@ public class ComprarCriptoptomoedas extends javax.swing.JFrame {
     /**
      * Creates new form ComprarCriptoptomoedas
      */
-    public ComprarCriptoptomoedas(Investidor investidor, Pessoa pessoa) {
+    public ComprarCriptoptomoedas(Investidor investidor, Pessoa pessoa, double bitcoin, double ethereum, double ripple) {
         initComponents();
         controll = new ControllerCompraDeCriptoMoedas(this, investidor, pessoa); 
         lblNome.setText(investidor.getNome());
         lblCpf.setText(investidor.getCpf());
+        lblBitcoin.setText(String.format("%.2f", bitcoin));
+        lblEthereum.setText(String.format("%.2f", ethereum));
+        lblRipple.setText(String.format("%.2f", ripple));
     }
 
     public JLabel getLblCpf() {
@@ -91,6 +94,39 @@ public class ComprarCriptoptomoedas extends javax.swing.JFrame {
         this.jLabel1 = jLabel1;
     }
 
+    public ControllerCompraDeCriptoMoedas getControll() {
+        return controll;
+    }
+
+    public void setControll(ControllerCompraDeCriptoMoedas controll) {
+        this.controll = controll;
+    }
+
+    public JLabel getLblBitcoin() {
+        return lblBitcoin;
+    }
+
+    public void setLblBitcoin(JLabel lblBitcoin) {
+        this.lblBitcoin = lblBitcoin;
+    }
+
+    public JLabel getLblEthereum() {
+        return lblEthereum;
+    }
+
+    public void setLblEthereum(JLabel lblEthereum) {
+        this.lblEthereum = lblEthereum;
+    }
+
+    public JLabel getLblRipple() {
+        return lblRipple;
+    }
+
+    public void setLblRipple(JLabel lblRipple) {
+        this.lblRipple = lblRipple;
+    }
+
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -109,6 +145,9 @@ public class ComprarCriptoptomoedas extends javax.swing.JFrame {
         btEscolher = new javax.swing.JButton();
         lblNome = new javax.swing.JLabel();
         lblCpf = new javax.swing.JLabel();
+        lblEthereum = new javax.swing.JLabel();
+        lblBitcoin = new javax.swing.JLabel();
+        lblRipple = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -138,6 +177,12 @@ public class ComprarCriptoptomoedas extends javax.swing.JFrame {
 
         lblCpf.setText("CPF");
 
+        lblEthereum.setText("Valor do ethereum");
+
+        lblBitcoin.setText("Valor da bitcoin");
+
+        lblRipple.setText("Valor do ripple");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,13 +196,22 @@ public class ComprarCriptoptomoedas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btEthereum, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btBitcoin, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btRipple, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btEscolher)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btBitcoin, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblBitcoin, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btRipple, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblRipple, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btEscolher)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btEthereum, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblEthereum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,14 +223,20 @@ public class ComprarCriptoptomoedas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btBitcoin))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btBitcoin)
+                            .addComponent(lblBitcoin)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(lblCpf)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btEthereum)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btEthereum)
+                    .addComponent(lblEthereum))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btRipple)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btRipple)
+                    .addComponent(lblRipple))
                 .addGap(18, 18, 18)
                 .addComponent(btEscolher)
                 .addContainerGap(92, Short.MAX_VALUE))
@@ -231,7 +291,10 @@ public class ComprarCriptoptomoedas extends javax.swing.JFrame {
     private javax.swing.JRadioButton btEthereum;
     private javax.swing.JRadioButton btRipple;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblBitcoin;
     private javax.swing.JLabel lblCpf;
+    private javax.swing.JLabel lblEthereum;
     private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblRipple;
     // End of variables declaration//GEN-END:variables
 }

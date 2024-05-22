@@ -251,7 +251,7 @@ public class Controller {
             moedasCarteira.add(ripple1);
 
             Carteira carteira = new Carteira(moedasCarteira);
-            ComprarCriptoptomoedas comprar = new ComprarCriptoptomoedas(new Investidor(carteira, nome, cpf, senha), new Pessoa(nome, cpf, senha));
+            ComprarCriptoptomoedas comprar = new ComprarCriptoptomoedas(new Investidor(carteira, nome, cpf, senha), new Pessoa(nome, cpf, senha), bitcoinBanco, ethereumBanco, rippleBanco);
             comprar.setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(menu,"Acesso negado");
@@ -303,7 +303,7 @@ public class Controller {
             moedasCarteira.add(ripple1);
 
             Carteira carteira = new Carteira(moedasCarteira);
-            VenderCriptoMoeda vender = new VenderCriptoMoeda(new Investidor(carteira, nome, cpf, senha), new Pessoa(nome, cpf, senha));
+            VenderCriptoMoeda vender = new VenderCriptoMoeda(new Investidor(carteira, nome, cpf, senha), new Pessoa(nome, cpf, senha), bitcoinBanco, ethereumBanco, rippleBanco);
             vender.setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(menu,"Acesso negado");
@@ -360,27 +360,38 @@ public class Controller {
         }
     }
 
-    private void excluirPessoa() {
+    private void excluirPessoa() {        
+        String cpf = pessoa.getCpf();
         String senha = JOptionPane.showInputDialog("Digite a sua senha: ");
         String senhaAtual = pessoa.getSenha();
-
-        if (senha.length() > 6) {
-            menu.getLblNaoEscolhido().setText("A senha tem no máximo 6 caracteres");
-        } else {
-            if (senha.equals(senhaAtual)) {
-                int option = JOptionPane.showConfirmDialog(menu, "Deseja realmente excluir " + pessoa.getNome() + "?");
-                if (option == JOptionPane.YES_OPTION) {
-                    try (Connection conn = new Conexao().getConnection()) {
-                        BancoDAO dao = new BancoDAO(conn);
-                        dao.remover(pessoa);
+        
+        if (senha.equals(senhaAtual)) {
+            int option = JOptionPane.showConfirmDialog(menu, "Deseja realmente excluir " + pessoa.getNome() + "?");
+            if (option == JOptionPane.YES_OPTION) {
+                Pessoa pessoa = new Pessoa(null, cpf, senha);
+                Conexao conexao = new Conexao();
+                
+                try{
+                    Connection conn = conexao.getConnection();
+                    BancoDAO dao = new BancoDAO(conn);
+                    ResultSet res = dao.consultar(pessoa);                    
+                    
+                    if(res.next()){                        
+                        int id = res.getInt("id_usuario");
+                        dao.remover(cpf);
+                        dao.removerExtrato(id);
                         JOptionPane.showMessageDialog(menu, "Excluído com sucesso!");
-                    } catch (SQLException e) {
-                        JOptionPane.showMessageDialog(menu, "Falha ao conectar ao banco de dados!");
+                        System.exit(0);
+                    }else{
+                        JOptionPane.showMessageDialog(menu,"Acesso negado");
                     }
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(menu, "Falha ao conectar ao banco de dados!");
+                     e.printStackTrace();                  
                 }
-            } else {
-                menu.getLblNaoEscolhido().setText("Senha incorreta");
             }
+        } else {
+            menu.getLblNaoEscolhido().setText("Senha incorreta");
         }
     }
 

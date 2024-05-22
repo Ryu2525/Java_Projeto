@@ -25,27 +25,35 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblCpf" pref="102" max="32767" attributes="0"/>
-                          <Component id="lblNome" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="lblCpf" pref="102" max="32767" attributes="0"/>
+                              <Component id="lblNome" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btEthereum" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
+                              <Component id="btBitcoin" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
+                              <Component id="btEscolher" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btEthereum" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
-                          <Component id="btBitcoin" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
-                          <Component id="btRipple" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
-                          <Component id="btEscolher" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" pref="99" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="99" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="btRipple" alignment="1" min="-2" pref="98" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="151" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="lblBitcoin" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
+                  <Component id="lblRipple" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblEthereum" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -62,11 +70,20 @@
                       <Component id="lblCpf" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="btBitcoin" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btBitcoin" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblBitcoin" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btEthereum" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btRipple" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btEthereum" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblEthereum" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btRipple" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblRipple" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btEscolher" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -139,6 +156,21 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEscolherActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblBitcoin">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Valor da bitcoin"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblEthereum">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Valor do ethereum"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblRipple">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Valor do ripple"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
