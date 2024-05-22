@@ -1,6 +1,5 @@
-create table public.log
-{
-    id_extrato integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 10000 CACHE 1 ),
+CREATE TABLE IF NOT EXISTS public.log
+(
     id_usuario integer NOT NULL,
     datahora timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     operacao character varying COLLATE pg_catalog."default" NOT NULL,
@@ -12,13 +11,8 @@ create table public.log
     bitcoin double precision NOT NULL,
     ethereum double precision NOT NULL,
     ripple double precision NOT NULL,
-    CONSTRAINT log_pkey PRIMARY KEY (id_extrato),
-    CONSTRAINT id_usuario FOREIGN KEY (id_usuario)
-        REFERENCES public.usuario (id_usuario) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-        NOT VALID
-};
+    id_extrato integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 100000 CACHE 1 )
+);
 
 CREATE TABLE IF NOT EXISTS public.tabelamoedas
 (
