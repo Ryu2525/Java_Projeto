@@ -5,6 +5,7 @@
 package view;
 
 import controller.ControllerExtrato;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -19,9 +20,11 @@ public class Extrato extends javax.swing.JFrame {
     /**
      * Creates new form Extrato
      */
-    public Extrato(int id) {
+    public Extrato(int id, Pessoa pessoa) {
         initComponents();
         controll = new ControllerExtrato(this, id);
+        lblNome.setText(pessoa.getNome());
+        lblCpf.setText(pessoa.getCpf());
     }
 
     public ControllerExtrato getControll() {
@@ -56,6 +59,46 @@ public class Extrato extends javax.swing.JFrame {
         this.txtExtrato = txtExtrato;
     }
 
+    public JLabel getCpf() {
+        return Cpf;
+    }
+
+    public void setCpf(JLabel Cpf) {
+        this.Cpf = Cpf;
+    }
+
+    public JLabel getNome() {
+        return Nome;
+    }
+
+    public void setNome(JLabel Nome) {
+        this.Nome = Nome;
+    }
+
+    public JButton getBtExtrato() {
+        return btExtrato;
+    }
+
+    public void setBtExtrato(JButton btExtrato) {
+        this.btExtrato = btExtrato;
+    }
+
+    public JLabel getLblCpf() {
+        return lblCpf;
+    }
+
+    public void setLblCpf(JLabel lblCpf) {
+        this.lblCpf = lblCpf;
+    }
+
+    public JLabel getLblNome() {
+        return lblNome;
+    }
+
+    public void setLblNome(JLabel lblNome) {
+        this.lblNome = lblNome;
+    }
+
     
     
     /**
@@ -71,8 +114,10 @@ public class Extrato extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtExtrato = new javax.swing.JTextArea();
         btExtrato = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        Nome = new javax.swing.JLabel();
+        Cpf = new javax.swing.JLabel();
+        lblNome = new javax.swing.JLabel();
+        lblCpf = new javax.swing.JLabel();
 
         lblExtrato.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblExtrato.setText("Extrato");
@@ -89,6 +134,10 @@ public class Extrato extends javax.swing.JFrame {
             }
         });
 
+        Nome.setText("Nome:");
+
+        Cpf.setText("CPF:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,20 +148,40 @@ public class Extrato extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblExtrato)
-                        .addGap(329, 329, 329))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btExtrato)
-                        .addGap(324, 324, 324))))
+                .addComponent(btExtrato)
+                .addGap(324, 324, 324))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblCpf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblExtrato)
+                .addGap(329, 329, 329))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(lblExtrato, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Nome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(33, 33, 33)
-                .addComponent(lblExtrato, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btExtrato)
@@ -162,9 +231,13 @@ public class Extrato extends javax.swing.JFrame {
 //    }
     ControllerExtrato controll;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Cpf;
+    private javax.swing.JLabel Nome;
     private javax.swing.JButton btExtrato;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblExtrato;
+    private javax.swing.JLabel lblNome;
     private javax.swing.JTextArea txtExtrato;
     // End of variables declaration//GEN-END:variables
 }

@@ -73,7 +73,7 @@ public class ControllerExtrato {
         if (extratoCompleto.length() > 0) {
             extrato.getTxtExtrato().setText(extratoCompleto.toString());
         } else {
-            JOptionPane.showMessageDialog(extrato, "Investidor não encontrado");
+            JOptionPane.showMessageDialog(extrato, "Nenhum extrato encontrado");
         }
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(extrato, "Falha de conexão!");

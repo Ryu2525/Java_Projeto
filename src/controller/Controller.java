@@ -62,7 +62,7 @@ public class Controller {
         }
     }
     
-    private void exibirSaldo() {
+    private void exibirExtrato() {
         String cpf = pessoa.getCpf();
         String senha = JOptionPane.showInputDialog("Digite a sua senha: ");
 
@@ -75,11 +75,12 @@ public class Controller {
             ResultSet res = dao.consultar(pessoa);
             
             if(res.next()){
-            JOptionPane.showMessageDialog(menu,"Acesso liberado");
-            int id = res.getInt("id_usuario");
+                String nome = res.getString("nome");
+                JOptionPane.showMessageDialog(menu,"Acesso liberado");
+                int id = res.getInt("id_usuario");
             
-            Extrato viewExtrato = new Extrato(id);
-            viewExtrato.setVisible(true);
+                Extrato viewExtrato = new Extrato(id, new Pessoa(nome, cpf, null));
+                viewExtrato.setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(menu,"Acesso negado");
             }
@@ -88,7 +89,7 @@ public class Controller {
         }
     }
 
-    private void exibirExtrato() {
+    private void exibirSaldo() {
         String cpf = pessoa.getCpf();
         String senha = JOptionPane.showInputDialog("Digite a sua senha: ");
         

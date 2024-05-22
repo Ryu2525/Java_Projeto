@@ -110,8 +110,6 @@ public class VenderCriptoMoeda extends javax.swing.JFrame {
         btRipple = new javax.swing.JRadioButton();
         btEscolher = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         lblNome.setText("Nome");
 
         lblCpf.setText("CPF");
